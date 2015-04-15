@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dinner planner</title>
+    <title>Agenda builder</title>
 
 <!-- jQuery -->
    <script src="https://code.jquery.com/jquery.js"></script>
@@ -21,13 +21,44 @@
 </head>
 
 <body >
-<!-- Home View -->
-    <div id="homeView" class="container" style="background-image:url(images/background.jpg)">
-        <div ng-show="aaa" class="createdinner text-center">
-            <h3> A Home Dinner Service</h3>
-            <p>The Recipe Finder allows you to quickly and confidently search and browse thousands of professionally tested recipes from favorite brands such as Cooking Light, Southerns Living, Health, and Sunset.
-            <button id="createDinner" class="big-button" role="button">Create new dinner</button>  
-            </p>
+<!-- Activity View -->
+    <div id="activityView" class="container" style="margin-top:50px;">
+        <div class="row">
+            <div class="col-md-3">
+                <button id="addActivityBtn" type="button" class="btn btn-success btn-block">+ Add activity</button>
+                <div id="parkedActivities" style="border-style:dashed; height:600px; margin-top:25px;">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <p>Start time: </p> <input type="text" name="startTime" id ="startTimeBox" placeholder="08:00" value="">
+                <p>End time: </p>
+                <p>Total length: </p>
+                <div id="activitiesOfTheDay" style="border-style:dashed; height:540px;">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button id="addDayBtn" type="button" class="btn btn-success btn-lg btn-block">+ Add a day</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Activity View -->
+    <div id="addActivityView" class="container" style="margin-top:50px;">
+        <div class="row">
+            <div class="col-md-3">
+                <input type="text" name="activityName" id="activityNameBox" placeholder="Name" value=""/>
+                <input type="text" name="activityLength" id="activityLengthBox" placeholder="Length" value="" style="margin-top:15px;"/> min
+                <select id="activityType" style="margin-top:15px;">
+                        <option value="presentation">Presentation</option>
+                        <option value="discussion">Discussion</option>
+                        <option value="groupWork">Group work</option>
+                        <option value="break">Break</option>
+                </select>
+                <textarea rows="4" cols="40" name="activityDescr" id="activityDescrBox" placeholder="Description" value="" style="margin-top:15px;"></textarea>
+                <button id="cancelBtn" type="button" class="btn btn-danger btn-xs" style="margin-right:15px;">Cancel</button><button id="saveBtn" type="button" class="btn btn-success btn-xs">Save</button>
+            </div>
+            <div class="col-md-9">
+            </div>
         </div>
     </div>
 
