@@ -12,8 +12,12 @@
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 
 <!-- javascript -->
-<script src="js/app.js"></script>
-<script src="Model.js"></script>
+<script src="app.js"></script>
+<script src="Model/Model.js"></script>
+<script src="Views/activityView.js"></script>
+<script src="Controllers/activityViewController.js"></script>
+<script src="Views/addActivityView.js"></script>
+<script src="Controllers/addActivityViewController.js"></script>
 
 <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
@@ -27,6 +31,7 @@
             <div class="col-md-3">
                 <button id="addActivityBtn" type="button" class="btn btn-success btn-block">+ Add activity</button>
                 <div id="parkedActivities" style="border-style:dashed; height:600px; margin-top:25px;">
+                <div id="activityTest"></div>
                 </div>
             </div>
             <div class="col-md-3">
@@ -43,19 +48,22 @@
     </div>
 
     <!-- Add Activity View -->
-    <div id="addActivityView" class="container" style="margin-top:50px;">
+    <div id="addActivityView" class="container" style="display:none;margin-top:50px;">
         <div class="row">
             <div class="col-md-3">
+            <form>
                 <input type="text" name="activityName" id="activityNameBox" placeholder="Name" value=""/>
                 <input type="text" name="activityLength" id="activityLengthBox" placeholder="Length" value="" style="margin-top:15px;"/> min
                 <select id="activityType" style="margin-top:15px;">
-                        <option value="presentation">Presentation</option>
-                        <option value="discussion">Discussion</option>
-                        <option value="groupWork">Group work</option>
-                        <option value="break">Break</option>
+                        <option value="0">Presentation</option>
+                        <option value="1">Discussion</option>
+                        <option value="2">Group work</option>
+                        <option value="3">Break</option>
                 </select>
                 <textarea rows="4" cols="40" name="activityDescr" id="activityDescrBox" placeholder="Description" value="" style="margin-top:15px;"></textarea>
+            </form>
                 <button id="cancelBtn" type="button" class="btn btn-danger btn-xs" style="margin-right:15px;">Cancel</button><button id="saveBtn" type="button" class="btn btn-success btn-xs">Save</button>
+
             </div>
             <div class="col-md-9">
             </div>

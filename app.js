@@ -8,7 +8,6 @@ $(function() {
 	var model = new DinnerModel();
 	//model.addDishToMenu(1);
 	//model.addDishToMenu(100);
-	//model.addDishToMenu(201);
 
     var sidebarView = new SidebarView($("#sidebarView"),model);
 	var sidebarViewController = new SidebarViewController(sidebarView,model);	
