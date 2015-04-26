@@ -148,6 +148,8 @@ function Day(startH,startM) {
 var Model = function() {
 	this.days = [];
 	this.parkedActivities = [];
+	var latitude = 59.37496119999999;
+	var longitude = 17.9644922;
 	
 	// adds a new day. if startH and startM (start hours and minutes)
 	// are not provided it will set the default start of the day to 08:00
@@ -211,6 +213,35 @@ var Model = function() {
 		}
 		this.notifyObservers();
 	};
+
+    // Get a forecast
+	this.getForecast = function (callback, view) {
+	    var url = "https://api.forecast.io/forecast/0afbc2b67d065d4cab10e996eb9db58a/" + latitude + "," + longitude + "?units=si";
+	    $.ajax({
+	        url: url,
+	        dataType: 'jsonp',
+	        success: function (data) {
+	            return callback(data.daily, view)
+	        }
+	    });
+	}
+
+	this.getCoordinates = function () {
+	    function success(position) {
+	        latitude = position.coords.latitude
+	        longitude = position.coords.longitude;
+	    }
+
+	    function error(msg) {
+            // Maybe you want to tell the user somewhere that the weather is not local?
+	    }
+
+	    if (navigator.geolocation) {
+	        navigator.geolocation.getCurrentPosition(success, error);
+	    } else {
+	        error('not supported');
+	    }
+	}
 	
 	//*** OBSERVABLE PATTERN ***
 	var listeners = [];

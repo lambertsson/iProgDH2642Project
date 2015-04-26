@@ -39,10 +39,9 @@ $(function() {
 		console.log("Day '" + ActivityType[index] + "' Length: " +  model.days[0].getLengthByType(index) + " min");
 	});
 }
-//createTestData();
+    //createTestData();
 
-
-
-
+    // Try to get the coordinates of the user.
+    model.getCoordinates();
 
 });
