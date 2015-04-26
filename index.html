@@ -13,7 +13,6 @@
 
 <!-- Dragula Drag and Drop API -->
     <script src="node_modules/dragula/dist/dragula.js"></script>
-    <script src="node_modules/dragula/example/example.js"></script>
     <script src="node_modules/dragula/dist/dragula.min.js"></script>
 
 <!-- javascript -->
@@ -37,7 +36,7 @@
             <div class="col-md-3">
                 <button id="addActivityBtn" type="button" class="btn btn-success btn-block">+ Add activity</button>
                 <div id="parkedActivities" style="border-style:dashed; height:600px; margin-top:25px;">
-                <div id="activityTest" style="display:table;"></div>
+
                 </div>
             </div>
             <div class="col-md-3">
@@ -51,7 +50,8 @@
                 <button id="addDayBtn" type="button" class="btn btn-success btn-lg btn-block">+ Add a day</button>
             </div>
         </div>
-        <script>dragula([activityTest, activitiesOfTheDay]);</script>
+        <script>dragula([parkedActivities, activitiesOfTheDay]);</script>
+        
     </div>
 
     <!-- Add Activity View -->
