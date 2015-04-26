@@ -13,7 +13,7 @@ var ActivityView = function (container,model) {
     	    if(data.length > 0){
 
     	        for ( var i = 0; i < data.length; i++) {
-       	           activityList +="<p>" + data[i].getLength().value + " min   " + data[i].getName().value + "</p>";
+       	           activityList +="<div style='display:block;'>" + data[i].getLength().value + " min   " + data[i].getName().value + "</div>";
                 //alert("Found data");
     	        }
 
