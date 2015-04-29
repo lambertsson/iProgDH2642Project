@@ -22,7 +22,7 @@
 <script src="Controllers/activityViewController.js"></script>
 <script src="Views/addActivityView.js"></script>
 <script src="Controllers/addActivityViewController.js"></script>
-<script src="Model/WeatherModel.js"></script>
+<!--<script src="Model/WeatherModel.js"></script> -->
 
 <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
@@ -55,27 +55,21 @@
     </div>
 
     <!-- Add Activity View -->
-    <div id="addActivityView" class="container" style="display:none;margin-top:50px;">
-        <div class="row">
-            <div class="col-md-3">
+    <div id="addActivityView" class="popup" >
             <form>
-                <input type="text" name="activityName" id="activityNameBox" placeholder="Name" value=""/>
-                <input type="text" name="activityLength" id="activityLengthBox" placeholder="Length" value="" style="margin-top:15px;"/> min
-                <select id="activityType" style="margin-top:15px;">
+                <input class="textbox" name="activityName" id="activityNameBox" placeholder="Name" value=""/>
+                <input class="textbox" name="activityLength" id="activityLengthBox" placeholder="Length" value="" /> min
+                <select id="activityType" class="textbox" >
                         <option value="0">Presentation</option>
                         <option value="1">Discussion</option>
                         <option value="2">Group work</option>
                         <option value="3">Break</option>
                 </select>
-                <textarea rows="4" cols="40" name="activityDescr" id="activityDescrBox" placeholder="Description" value="" style="margin-top:15px;"></textarea>
+                <textarea  class="textbox" style="height:120px;" name="activityDescr" id="activityDescrBox" placeholder="Description" value="" ></textarea>
             </form>
-                <button id="cancelBtn" type="button" class="btn btn-danger btn-xs" style="margin-right:15px;">Cancel</button><button id="saveBtn" type="button" class="btn btn-success btn-xs">Save</button>
+                <button id="cancelBtn" class=" button-error">Cancel</button><button id="saveBtn" class="button-success pull-right">Save</button>
 
             </div>
-            <div class="col-md-9">
-            </div>
-        </div>
-    </div>
 
     <!-- Just using this to see how the weather/geolocation works -->
     <div id="status"></div>
