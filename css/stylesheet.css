@@ -1,3 +1,160 @@
+
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+/* fontawesome */
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*------ utiltity classes -----*/
+
+
+
+.fl{ float:left; }
+.fr{ float: right; }
+/*its also known as clearfix*/
+.group:before,
+.group:after {
+    content: "";
+    display: table;
+} 
+.group:after {
+    clear: both;
+}
+.group {
+    zoom: 1;  /*For IE 6/7 (trigger hasLayout) */
+}
+
+body {
+    background: #F2F2F2;
+    font-family: 'Droid Sans', sans-serif;
+    line-height: 1;
+    font-size: 16px;    
+}
+.wrapper {
+    
+}
+.day-table {
+    width: 88%;
+    margin: 50px auto;
+    text-align: center;
+    padding: 10px;
+    padding-right: 0;
+}
+.day-table .heading{
+    color: #9C9E9F;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    margin-bottom: 4rem;
+}
+.block{
+    width: 22%;    
+    margin: 0 15px;
+    overflow: hidden;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;    
+/*    border: 1px solid red;*/
+}
+
+/*Shared properties*/
+.title, .pt-footer{
+    color: #FEFEFE;
+    text-transform: capitalize;
+    line-height: 2.5;
+    position: relative;
+}
+.content{
+    position: relative;
+    color: #FEFEFE;
+    padding: 20px 0 10px 0;
+}
+/*arrow creation*/
+.content:after, .content:before,.pt-footer:before,.pt-footer:after {
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+.pt-footer:after,.pt-footer:before{
+    top:0;
+}
+.content:after,.pt-footer:after {
+  border-color: rgba(136, 183, 213, 0); 
+  border-width: 5px;
+  margin-left: -5px;
+}
+/*/arrow creation*/
+.text{
+    
+    display: inline-block;
+    margin-top: 0px;
+    margin-left: 5px;
+    text-align:left;
+}
+/*.text span{    
+    font-size: 1.5rem;
+    letter-spacing: 8px;
+    font-weight: bold;        
+}
+.text sup{
+    font-size: 1.5rem;    
+    position: absolute;    
+    top: 12px;
+    left: 12px;
+}
+.hint{
+    font-style: italic;
+    font-size: 0.9rem;
+}*/
+.features{
+    list-style-type: none;    
+    background: #FFFFFF;
+    text-align: left;
+    color: #9C9C9C;
+    padding:30px 22%;
+    font-size: 0.9rem;
+}
+.features li{
+    padding:15px 0;
+    width: 100%;
+}
+.features li span{
+   padding-right: 0.4rem; 
+}
+.pt-footer{
+    font-size: 0.95rem;
+    text-transform: capitalize;
+}
+
+.parked .title{        
+    background: #3EC6E0;    
+}
+.parked .content,.parked .pt-footer{
+    background: #53CFE9;
+}
+.parked .content:after{ 
+  border-top-color: #53CFE9;  
+}
+.parked .pt-footer:after{
+    border-top-color: #FFFFFF;
+}
 .popup {
    
   display: none;
@@ -50,10 +207,10 @@
 
 button {
  border-radius: 5px;
-  padding: 5px 15px;
+  padding: 5px 20px;
   font-size: 12px;
   text-decoration: none;
-  margin: 20px;
+  margin: 10px;
   position: relative;
   display: inline-block;
     
@@ -73,9 +230,29 @@ button {
       background: #FF6656;
     }
   }
-  
-}
 
-.pull-right {
-  float: right;  
-}
+  .button2 {
+   border: 1px solid #FEFEFE;
+   padding: 2px 55px;
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
+   color:#FEFEFE ;
+   text-decoration: none;
+   vertical-align: middle;
+    font-size:12px;
+  background-color:#53CFE9;
+   }
+
+  .button3 {
+   border: 1px solid #FEFEFE;
+   padding: 10px 55px;
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
+   color:#FEFEFE ;
+   text-decoration: none;
+   vertical-align: middle;
+    font-size:12px;
+  background-color:#53CFE9;
+   }
