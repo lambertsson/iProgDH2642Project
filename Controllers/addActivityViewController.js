@@ -1,3 +1,17 @@
+activityApp.controller("addActivityController", function($scope,ActivityModel) {
+    
+    //if (ActivityModel.getParkedActivities.lengt{ }
+         
+    //$scope.items = ActivityModel.getParkedActivities(); 
+    //$scope.items = ActivityModel.testing();
+
+    //ActivityModel.addActivity(new Activity("ABO BO BO",10,0,""),0);
+      //$scope.items = ActivityModel.getParkedActivities();
+      //$scope.hello = myInjectedFactory.hello();
+});
+
+
+/*
 var AddActivityViewController = function(view,model){
 
     $("#saveBtn").on('click', function(){
@@ -18,3 +32,4 @@ var AddActivityViewController = function(view,model){
         $("#activityView").show();
     }); 
 }
+*/

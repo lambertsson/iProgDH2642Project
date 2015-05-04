@@ -1,25 +1,24 @@
-$(function() {
-    //Initializes model,views and correcspoding controllers.
-    var model = new Model();
+var activityApp = angular.module("mainApp", ["ngRoute"]) //'ngRoute','ngResource'
+.config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.
+      when('/activityView', {
+        templateUrl: 'activityView.html',
+        controller: 'activityController'
+    }).
+      when('/addActivityView', {
+        templateUrl: 'addActivityView.html',
+        controller: 'addActivityController'
+      }).
+      otherwise({
+        redirectTo: '/'
+      });
+}]);
 
-    var activityView = new ActivityView($("#activityView"),model);
-    var activityViewController = new ActivityViewController(activityView,model);
-
-    var addActivityView = new AddActivityView($("#addActivityView"),model);
-    var addActivityViewController = new AddActivityViewController(addActivityView,model);
-
-    //Testing testing, everything below this is for testing.
-
-    /*If we want to have the addActivityView as a popup.
-    function popupwindow() {
-    //center for browser use: window.innerWidth & window.innerHeight
-    var left  = ($(window).width()/2)-(900/2);
-    var top   = ($(window).height()/2)-(600/2);
-
-    return window.open("","Add activity", 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
-}
-     */
     //More testing
+ 
+
+
     function createTestData(){
 
 	model.addDay();
@@ -41,7 +40,8 @@ $(function() {
 }
     //createTestData();
 
-    // Try to get the coordinates of the user.
-    model.getCoordinates();
 
-});
+    // Try to get the coordinates of the user.
+    //model.getCoordinates();
+
+

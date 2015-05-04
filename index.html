@@ -1,10 +1,13 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="mainApp" >
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Agenda builder</title>
+<!-- angularjs
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+ -->
 
 <!-- jQuery -->
    <script src="https://code.jquery.com/jquery.js"></script>
@@ -15,11 +18,15 @@
     <script src="node_modules/dragula/dist/dragula.js"></script>
     <script src="node_modules/dragula/dist/dragula.min.js"></script>
 
-<!-- javascript -->
+<!-- javascript
+
+ -->
 <script src="Scripts/angular.js"></script>
 <script src="app.js"></script>
-<script src="Model/Model.js"></script>
+<script src="Model/angularModel.js"></script>
+
 <script src="Views/activityView.js"></script>
+<script src="Views/addActivityView.js"></script>
 <script src="Controllers/activityViewController.js"></script>
 <script src="Views/addActivityView.js"></script>
 <script src="Controllers/addActivityViewController.js"></script>
@@ -31,8 +38,11 @@
 </head>
 
 <body >
-<!-- Activity View -->
-<div id="activityView" class="wrapper">
+<!-- Activity View 
+ng-view="activityView"
+-->
+
+<div ng-view="activityView" ng-controller="activityController" id="activityView" class="wrapper">
         <div class="day-table group">
             <h1 class="heading">
                 Meeting Agenda
@@ -42,11 +52,11 @@
                 <h2 class="title">Parked</h2>
                 <div class="content">
                     <p class="text">
-                        <button id="addActivityBtn" class="button3"> +Add Activity</button>
+                        <button ng-click="go(addActivityView)" id="addActivityBtn" class="button3"> +Add Activity</button>
                     </p>
                 </div>
-                <ul id="parkedActivities" class="features">
-                    <li></li>
+                <ul data-ng-repeat="item in items track by $index" id="parkedActivities" class="features">
+                    <li>{{ item }}</li>
                 </ul>
                 <div class="pt-footer">
                     <button class="button2"> Delete Activity</button>
@@ -87,18 +97,20 @@
     </div>
 
     <!-- Add Activity View -->
-    <div id="addActivityView" class="popup" >
+    <div data-ng-view="addActivityView" ng-controller="addActivityController" id="addActivityView" class="popup" >
             <form>
-                <input class="textbox" name="activityName" id="activityNameBox" placeholder="Name" value=""/>
-                <input class="textbox" name="activityLength" id="activityLengthBox" placeholder="Length" value="" /> min
+                <input class="textbox" type="text" nd-model="activity.name" id="activityNameBox" placeholder="Name" value=""/>
+                <input class="textbox" type="length" ng-model="activity.length" id="activityLengthBox" placeholder="Length" value="" /> min
                 <select id="activityType" class="textbox" >
                         <option value="0">Presentation</option>
                         <option value="1">Discussion</option>
                         <option value="2">Group work</option>
                         <option value="3">Break</option>
                 </select>
-                <textarea  class="textbox" style="height:120px;" name="activityDescr" id="activityDescrBox" placeholder="Description" value="" ></textarea>
+                <textarea  class="textbox" ng-model="activity.description" style="height:120px;"  id="activityDescrBox" placeholder="Description" value="" ></textarea>
             </form>
+                 <pre>form = {{activity | json}}</pre>
+                <pre>master = {{master | json}}</pre>
                 <button id="cancelBtn" class=" button-error">Cancel</button><button id="saveBtn" class="button-success pull-right">Save</button>
 
             </div>
