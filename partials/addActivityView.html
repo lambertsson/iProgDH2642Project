@@ -1,5 +1,18 @@
-<div ng-view="addActivityView">
-		
+ <div id="addActivityView" class="popup" >
 
-</div>
-    
+            <form [name="activity"]>
+                <input class="textbox" type="text" ng-model="activity.name" id="activityNameBox" placeholder="Name" value=""/>
+                <input class="textbox" type="length" ng-model="activity.length" id="activityLengthBox" placeholder="Length" value="" /> min
+                <select ng-model="activity.type" id="activityType" class="textbox" value="Activity Type">
+                        <option value="Presentation">Presentation</option>
+                        <option value="Discussion">Discussion</option>
+                        <option value="Group work">Group work</option>
+                        <option value="Break">Break</option>
+                </select>
+                <textarea  class="textbox" ng-model="activity.description" style="height:120px;"  id="activityDescrBox" placeholder="Description" value="" ></textarea>
+            </form>
+                 
+                <button ng-click="exit('/activityView.html')"id="cancelBtn" class=" button-error">Cancel</button>
+                <button ng-click="saveForm('/activityView.html')" id="saveBtn" class="button-success pull-right">Save</button>
+
+            </div>

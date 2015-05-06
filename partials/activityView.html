@@ -1,38 +1,56 @@
-<div ng-view="activityView">
-<div> 
-<h1>hej</h1>
-</div>
-    
-</div>
-<!--
-var ActivityView = function (container,model) {
+<div id="activityView" class="wrapper">
+        <div class="day-table group">
+            <h1 class="heading">
+                Meeting Agenda
+            </h1>
+           
+            <div class="block parked fl">
+                <h2 class="title">Parked</h2>
+                <div class="content">
+                    <p class="text">
 
-	this.addActivityBtn = container.find("#addActivityBtn");
-    this.parkedActivities = container.find("#parkedActivities");
+                        <button ng-click="go('/addActivityView.html')" id="addActivityBtn" class="button3"> +Add Activity</button>
+                    </p>
+                </div>
+                <ul id="parkedActivities" style='display:block;' class="features">
+                    <div data-ng-repeat="item in items track by $index">
+                    <li id="{{$index}}">{{ item.getName() }} {{ item.getLength() }}</li></div>
 
+                </ul>
+                <div class="pt-footer">
+                    <button class="button2"> Delete Activity</button>
+                </div>
+            </div>
 
-	model.addObserver(this);
-	this.update=function(data){
-    	try{
-    	    console.log(data[0].getLength());
-            console.log(data);
-            console.log("tjoho", data[0].getTypeId());
-            var activityList="";
-    	    if(data.length > 0){
-    	        for ( var i = 0; i < data.length; i++) {
-       	           activityList +="<div style='display:block;'>" + data[i].getLength().value + " min   " + data[i].getName().value + "</div>";
-                //alert("Found data");
-    	        }
+         <div class="block parked fl">
+                <h2 class="title">Day1 </h2>
+                <div class="content">
+                    <div class="text">
+                       <p style="text-align:left;margin-left: 5px;">  Start time: <input type="text" style="width:100px" name="startTime" id ="startTimeBox" placeholder="08:00" value=""></p>
+               <p style="text-align:left;margin-left: 5px;">End time: </p>
+                <p style="text-align:left;margin-left: 5px;">Total length: </p>
+            </div>
+                    
+                </div>
+                <ul id="activitiesOfTheDay" class="features">
+                    <li></li>
+                </ul>
+                <div class="pt-footer">
+                    <button class="button2"> Remove Day</button>
+                </div>
+            </div>
 
-                this.parkedActivities.html(activityList);
-                }
-            else{
-                alert("No data");
-            }}
-        catch(TypeError){
-            //alert("TypeError");
-        }
-        }
+         
+            <div class="block parked fl">
+                <div class="content">
+                    <p class="text">
+                        <button id="addDayBtn" class="button3"> +Add Day</button>
+                    </p>
+                </div>
+             <script>dragula([parkedActivities, activitiesOfTheDay]);</script>
+            </div>
 
-    }
--->
+             
+
+        </div>
+    </div>
