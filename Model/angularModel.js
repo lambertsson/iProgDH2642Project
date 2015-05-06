@@ -148,7 +148,7 @@ function Day(startH,startM) {
 //var Model = function() {
 	
 	this.days = [];
-	this.parkedActivities = ["hej","jasså","okej"];
+	this.parkedActivities = [];
 	var latitude = 59.37496119999999;
 	var longitude = 17.9644922;
 
@@ -183,8 +183,10 @@ function Day(startH,startM) {
 			this.days[day]._addActivity(activity,position); }
         else {
 			if (position != null) {
+				
 				this.parkedActivities.splice(position,0,activity); }
 			else {this.parkedActivities.push(activity);
+				//console.log("hej!!!!!! " + activity.getName());
 		}		
 	}
     };
@@ -196,7 +198,6 @@ function Day(startH,startM) {
 	// remove an activity on provided position from parked activites
 	this.removeParkedActivity = function(position) {
 		act = this.parkedActivities.splice(position,1)[0];
-
 		return act;
 	};
 
@@ -251,11 +252,8 @@ function Day(startH,startM) {
 	        error('not supported');
 	    }
         }
-
-    
-
-        return this;
-
+        
+return this;
         });
 
 

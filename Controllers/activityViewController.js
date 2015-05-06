@@ -1,28 +1,20 @@
-activityApp.controller("activityController", function($scope,ActivityModel) {
-    //alert(model.days);
-    //if (ActivityModel.getParkedActivities.lengt{ }
-    //console.log(ActivityModel.getParkedActivities.length);
-    alert("hej");
-      $scope.test  = function() {alert("Clicked")};
-
-    $scope.go = function ( path ) {
-      $location.path( path );
-    };
+activityApp.controller("activityController", ["$scope", "$routeParams", "$location", "ActivityModel",
+  function($scope,$routeParams,$location,ActivityModel) {
+   console.log($routeParams);
     
 
-    //$scope.items = ActivityModel.getParkedActivities(); 
-    //$scope.items = ActivityModel.testing();
+    $scope.items = ActivityModel.getParkedActivities(); 
+    //console.log("hej" + $scope.items.name);
+    $scope.test  = function() {alert("Clicked")};
 
-    //ActivityModel.addActivity(new Activity("ABO BO BO",10,0,""),0);
-      //$scope.items = ActivityModel.getParkedActivities();
-      //$scope.hello = myInjectedFactory.hello();
-});
-
-/*var ActivityViewController = function(view, model ) {
-    $("#addActivityBtn").on('click', function(){
-        
-		$("#addActivityView").fadeIn(300);
-
+    $scope.go = function ( path ) {      
+      //var path = "partials/activityView.html";
+      $location.path( path ).replace();
+    };
+    
+    
+}]);
+/*
         // ***************************
         // Temporary, just for testing.
 
