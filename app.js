@@ -3,11 +3,11 @@ var activityApp = angular.module("mainApp", ["ngRoute"]) //'ngRoute','ngResource
   function($routeProvider) {
     $routeProvider.
       when('/activityView', {
-        templateUrl: 'activityView.html',
+        templateUrl: 'partials/activityView.html',
         controller: 'activityController'
     }).
       when('/addActivityView', {
-        templateUrl: 'addActivityView.html',
+        templateUrl: 'partials/addActivityView.html',
         controller: 'addActivityController'
       }).
       otherwise({
