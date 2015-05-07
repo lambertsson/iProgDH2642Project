@@ -21,7 +21,9 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
 
   };
 
-    $scope.items = ActivityModel.getParkedActivities();
+    $scope.activities = ActivityModel.getParkedActivities();
+
+    $scope.days = ActivityModel.getDays();
 
     $scope.toggleModal = function() {
         $scope.modalShown = !$scope.modalShown;

@@ -1,7 +1,13 @@
 activityApp.controller('ComplexController', ['$scope', '$element', 'title', 'close', "ActivityModel",
   function($scope, $element, title, close,ActivityModel) {
-
+  /*
+  $scope.name = null;
+  $scope.length = null;
+  $scope.type = null;
+  $scope.description = null;
+  */
   $scope.title = title;
+
   //  This close function doesn't need to use jQuery or bootstrap, because
   //  the button has the 'data-dismiss' attribute.
   $scope.close = function() {
@@ -11,7 +17,7 @@ activityApp.controller('ComplexController', ['$scope', '$element', 'title', 'clo
             console.log(activity);
 
       }
-      }; 
+      };
       /*
  	  close({
       name: $scope.name,

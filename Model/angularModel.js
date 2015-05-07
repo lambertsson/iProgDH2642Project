@@ -162,6 +162,11 @@ function Day(startH,startM) {
         return this.parkedActivities;
 
     };
+        this.getDays = function (){
+    	//console.log(this.parkedActivities);
+        return this.days;
+
+    };
 
 	// adds a new day. if startH and startM (start hours and minutes)
 	// are not provided it will set the default start of the day to 08:00
