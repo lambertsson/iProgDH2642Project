@@ -39,6 +39,7 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
       $location.path( path ).replace();
     };
     }]);
+
     /*
 
 

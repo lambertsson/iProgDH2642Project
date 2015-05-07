@@ -83,6 +83,29 @@ body {
     color: #FEFEFE;
     padding: 20px 0 10px 0;
 }
+
+.activityContent{
+    font-size: medium; 
+    position: relative;
+    color: #FEFEFE;
+    padding: 20px 0 10px 0;
+}
+
+.Discussion {
+  background-color: #48d1cc;
+}
+
+.Break {
+  background-color: #48d188;
+}
+
+.Presentation {
+  background-color: #4892d1;
+}
+
+.Groupwork {
+ background-color: #d14891;
+}
 /*arrow creation*/
 .content:after, .content:before,.pt-footer:before,.pt-footer:after {
   top: 100%;
@@ -94,6 +117,7 @@ body {
   position: absolute;
   pointer-events: none;
 }
+
 .pt-footer:after,.pt-footer:before{
     top:0;
 }
@@ -157,6 +181,11 @@ body {
 .parked .pt-footer:after{
     border-top-color: #FFFFFF;
 }
+
+.parked .activityContent:after{ 
+  border-top-color: ##eaeaec;
+}
+
 .popup {
    
   display: none;

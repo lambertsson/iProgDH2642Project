@@ -46,7 +46,7 @@
                 </div>
                 <ul id="parkedActivities" style='display:block;' class="features">
                     <div data-ng-repeat="activity in activities track by $index">
-                    <li class="content" style="cursor: grab" id="{{$index}}"> {{ activity.getLength() }}   min |  {{ activity.getName() }}</li></div>
+                    <li class="activityContent {{activity.getTypeId()}}" style="cursor: grab" id="{{$index}}"> {{ activity.getLength() }}  min |  {{ activity.getName() }}</li></div>
 
                 </ul>
 
