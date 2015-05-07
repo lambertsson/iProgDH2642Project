@@ -1,20 +1,54 @@
-<div id="activityView" class="wrapper">
+
+              <!--
+              My first attempt on doing an angular poopup. Keeping if we want to change.
+
+            <modal-dialog show='modalShown' width='750px' height='60%'>
+                          <div ng-controller="addActivityController">
+                                <form [name="activity"]>
+                                    <input class="textbox" type="text" ng-model="activity.name" id="activityNameBox" placeholder="Name" value=""/>
+                                    <input class="textbox" type="number" ng-model="activity.length" id="activityLengthBox" placeholder="Length" value="" /> min
+                                    <select ng-model="activity.type" id="activityType" class="textbox" placeholder="Select type of activity">
+                                            <option value="Presentation">Presentation</option>
+                                            <option value="Discussion">Discussion</option>
+                                            <option value="Group work">Group work</option>
+                                            <option value="Break">Break</option>
+                                    </select>
+                                    <textarea  type="text" class="textbox" ng-model="activity.description" style="height:120px;"  id="activityDescrBox" placeholder="Description" value="" ></textarea>
+
+                                    </form>
+                                    <button ng-click="toggleModal()" class="button-success" type="submit" id="saveBtn" >Save</button>
+                                     </div>
+                        </modal-dialog>
+
+                 <button class="button-success" type="submit" id="saveBtn" >Save</button>
+                 <div class="blabla"><button id="saveBtn">Save</button> </div>
+                 <button ng-click='hideModal()' id="saveBtn" class="button-success pull-right">Save</button>
+                 <button class="button-success" type="submit" id="saveBtn" >Save</button>
+                 <button ng-click="toggleModal()"id="cancelBtn" class=" button-error">Cancel</button>
+                 <button ng-click="hideModal()"id="cancelBtn" class=" button-error">Cancel</button>
+                <button ng-click="exit()"id="cancelBtn" class=" button-error">Cancel</button>
+                 <button ng-click="saveForm()" id="saveBtn" class="button-success pull-right">Save</button>
+                  -->
+  <div id="activityView" class="wrapper">
+
         <div class="day-table group">
             <h1 class="heading">
                 Meeting Agenda
             </h1>
-           
+
+
+
             <div class="block parked fl">
                 <h2 class="title">Parked</h2>
                 <div class="content">
                     <p class="text">
+                        <button ng-click='showComplex()' id="addActivityBtn" class="button3"> +Add Activity</button>
 
-                        <button ng-click="go('/addActivityView')" id="addActivityBtn" class="button3"> +Add Activity</button>
                     </p>
                 </div>
                 <ul id="parkedActivities" style='display:block;' class="features">
                     <div data-ng-repeat="item in items track by $index">
-                    <li id="{{$index}}">{{ item.getName() }} {{ item.getLength() }}</li></div>
+                    <li class="content" style="cursor: grab" id="{{$index}}"> {{ item.getLength() }}   min |  {{ item.getName() }}</li></div>
 
                 </ul>
                 <div class="pt-footer">
@@ -26,14 +60,14 @@
                 <h2 class="title">Day1 </h2>
                 <div class="content">
                     <div class="text">
-                       <p style="text-align:left;margin-left: 5px;">  Start time: <input type="text" style="width:100px" name="startTime" id ="startTimeBox" placeholder="08:00" value=""></p>
+                <p style="text-align:left;margin-left: 5px;">  Start time: <input type="text" style="width:100px" name="startTime" id ="startTimeBox" placeholder="08:00" value=""></p>
                <p style="text-align:left;margin-left: 5px;">End time: </p>
                 <p style="text-align:left;margin-left: 5px;">Total length: </p>
             </div>
                     
                 </div>
                 <ul id="activitiesOfTheDay" class="features">
-                    <li></li>
+                   <!-- <li></li> -->
                 </ul>
                 <div class="pt-footer">
                     <button class="button2"> Remove Day</button>
@@ -44,7 +78,7 @@
             <div class="block parked fl">
                 <div class="content">
                     <p class="text">
-                        <button id="addDayBtn" class="button3"> +Add Day</button>
+                        <button ng-click="addDay()"id="addDayBtn" class="button3"> +Add Day</button>
                     </p>
                 </div>
              <script>dragula([parkedActivities, activitiesOfTheDay]);</script>

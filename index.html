@@ -15,9 +15,9 @@
 
 <!-- jQuery -->
    <script src="https://code.jquery.com/jquery.js"></script>
-<!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
-   <!-- <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> -->
-
+<!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc.
+   <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>  -->
+   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <!-- Dragula Drag and Drop API -->
     <script src="node_modules/dragula/dist/dragula.js"></script>
     <script src="node_modules/dragula/dist/dragula.min.js"></script>
@@ -29,20 +29,22 @@
 
 <script src="Scripts/angular.js"></script>
 <script src="Scripts/angular-route.js"></script>
+<script src="Scripts/angular-modal-service.js"></script>
 
 
 <script src="app.js"></script>
 <script src="Model/angularModel.js"></script>
-<script src="Controllers/activityViewController.js"></script>
-<script src="Controllers/addActivityViewController.js"></script>
+<script src="Controllers/activityController.js"></script>
+<script src="Controllers/addActivityController.js"></script>
+<script src="Controllers/complexController.js"></script>
 
 
 <!-- Bootstrap CSS -->
-   <!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/stylesheet.css">
 </head>
 
-<body ng-app="mainApp">
+<body ng-app="activityApp">
 <!-- Activity View 
 
 -->

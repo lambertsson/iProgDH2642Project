@@ -1,29 +1,35 @@
 activityApp.controller("activityController", ["$scope", "$routeParams", "$location","ModalService", "ActivityModel",
   function($scope,$routeParams,$location,ModalService,ActivityModel) {
-     $scope.complexResult = null;
-     $scope.showComplex = function() {
+     //$scope.complexResult = null;
+
+
+  $scope.showComplex = function() {
 
     ModalService.showModal({
       templateUrl: "partials/complex.html",
-      controller: "controllers/complexController",
+      controller: "ComplexController",
       inputs: {
-        title: "A More Complex Example"
+        title: "Enter your activity information"
       }
     }).then(function(modal) {
       modal.element.modal();
       modal.close.then(function(result) {
-        $scope.complexResult  = "Name: " + result.name + ", age: " + result.age;
+          //console.log(result.name);
+        //$scope.complexResult  = "Name: " + result.name + ", age: " + result.age;
       });
     });
 
   };
 
     $scope.items = ActivityModel.getParkedActivities();
-    //console.log("hej" + $scope.items.name);
-      $scope.toggleModal = function() {
-            $scope.modalShown = !$scope.modalShown;
+
+    $scope.toggleModal = function() {
+        $scope.modalShown = !$scope.modalShown;
   };
-    $scope.test  = function() {alert("Clicked")};
+    $scope.addDay  = function() {
+        ActivityModel.addDay();
+
+    };
 
     $scope.go = function ( path ) {
         console.log("wtf");
@@ -32,6 +38,8 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
     };
     }]);
     /*
+
+
     $scope.saveForm = function () {
          console.log("hej!!!!!!!!!");
         console.log($scope.activity);
