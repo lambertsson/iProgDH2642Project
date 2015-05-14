@@ -21,12 +21,13 @@
                 <ul id="parkedActivities" style='display:block;' class="features">
                     <div data-ng-repeat="activity in activities track by $index">
                     <li class="activityContent" data-drag="true" id= "{{activity.getTypeId()}}" style="cursor: grab" id="{{$index}}"> {{ activity.getLength() }}  min |  {{ activity.getName() }}</li>
-                    </div>
+                    <button class="button2"> Delete Activity</button>
+                 </div>
 
                 </ul>
 
                 <div class="pt-footer">
-                    <button class="button2"> Delete Activity</button>
+
                 </div>
             </div>
 
@@ -39,9 +40,9 @@
                 <h2 class="title">Day {{$index +1 }}</h2>
                 <div class="content">
                     <div class="text">
-                <p style="text-align:left;margin-left: 5px;">  Start time: <input type="text" style="width:100px" name="startTime" id ="startTimeBox" placeholder="08:00" value=""></input></p>
-                <p style="text-align:left;margin-left: 5px;">End time: </p>
-                <p style="text-align:left;margin-left: 5px;">Total length: </p>
+                <p style="text-align:left;margin-left: 5px;">  Start time: {{ day.getStart() }}</p>
+                <p style="text-align:left;margin-left: 5px;">End time: {{ day.getEnd() }}</p>
+                <p style="text-align:left;margin-left: 5px;">Total length: {{ day.getTotalLength() }}</p>
             </div>
 
                 </div>
