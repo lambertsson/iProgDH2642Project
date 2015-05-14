@@ -185,10 +185,29 @@ function Day(startH,startM,dayId) {
 	var latitude = 59.37496119999999;
 	var longitude = 17.9644922;
 
-	this.testing = function(){
-		//console.log(5);
-		this.addActivity(new Activity("Idea 1",30,0,""),0);
+	this.testing = function () {
+	    //console.log(5);
+	    //this.addActivity(new Activity("Idea 1",30,0,""),0);
+	    this.firebase.update({
+	        day: 1,
+	        activities: [{ name: "Meeting", length: 5, typeid: 1, description: "Very important!" }, { name: "Meeting 2", length: 10, typeid: 2, description: "Not very important..." }]
+	    })
+	    this.firebase.update({
+	        day: 2,
+	        activities: [{ name: "Meeting 3", length: 15, typeid: 3, description: "Very importantez ueno si!" }, { name: "Meeting 4", length: 20, typeid: 1, description: "Not very important... =(" }]
+	    })
+	    this.firebase.update({
+	        day: 2,
+	        activities: [{ name: "Meeting 54", length: 5, typeid: 1, description: "Very important!" }, { name: "Meeting 222", length: 10, typeid: 2, description: "Not very important..." }]
+	    })
 	}
+	//this.testing();
+
+    // Load day and activity data from firebase.
+	this.loadFirebase = function () {
+
+	}
+	//this.loadFirebase();    // Call it right away!
 
     this.getParkedActivities = function (){
     	//console.log(this.parkedActivities);
