@@ -3,11 +3,11 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <button class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true"></button>
+        <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title">{{title}}</h4>
       </div>
       <div class="modal-body">
-                <form name="result">
+                <form [name="result"]>
                 <input class="textbox" type="text" ng-model="result.name" id="activityNameBox" placeholder="Name" value=""/>
                 <input class="textbox" type="number" ng-model="result.length" id="activityLengthBox" placeholder="Length" value="" /> min
                 <select ng-model="result.type" id="activityType" class="textbox" value="Activity Type">
@@ -21,10 +21,32 @@
       <div class="modal-footer">
         <button type="button" ng-click="close()" class="btn btn-primary" data-dismiss="modal">OK</button>
         <button type="button" ng-click="cancel()" class="btn">Cancel</button>
-        </div>
         </form>
       </div>
     </div>
   </div>
 </div>
+        <!--
 
+
+
+        <p>Here's a more complex modal, it contains a form, data is passed to the controller
+         and data is returned from the modal.</p>
+
+		<form class="form-horizontal" role="form">
+		  <div class="form-group">
+		    <label for="name" class="col-sm-2 control-label">Name</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="name" placeholder="Your Name" ng-model="name">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="age" class="col-sm-2 control-label">Age</label>
+		    <div class="col-sm-10">
+		      <input type="number" class="form-control" id="inputPassword3" placeholder="Age" ng-model="age">
+		    </div>
+		  </div>
+		</form>
+
+      </div>
+      -->

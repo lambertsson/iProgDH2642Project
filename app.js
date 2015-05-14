@@ -16,9 +16,6 @@ var activityApp = angular.module("activityApp", ["ngRoute","angularModalService"
         redirectTo: '/activityView'
       });
 }]);
-activityApp.run(function($templateCache) {
-  $templateCache.put('dragula.html', '<script>dragula([parkedActivities, activitiesOfTheDay])</script>');
-});
  /*
 
 activityApp.directive('modalDialog', function() {
