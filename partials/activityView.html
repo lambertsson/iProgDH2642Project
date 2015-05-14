@@ -3,9 +3,10 @@
 
         <div class="day-table group">
            <h1 class="heading"> Meeting Agenda</h1>
-            <h1 class="weather">
-               <p>Today: <span>{{$weatherToday}}</span></p>
-                <p>Tomorrow: <span ng-bind="$weatherTomorrow"></span></p>
+            <h1 ng-init="getWeather()" class="weather">
+               <p>Today: <span ng-bind="weatherToday"></span></p>
+                <p>Tomorrow: <span ng-bind="weatherTomorrow"></span></p>
+                <button ng-click="getWeather()">Powered by Forecast</button>
             </h1 >
              <!-- Creates "activity blocks" based on the parkedActivities found in the model -->
             <div class="block parked fl">
@@ -18,7 +19,8 @@
                 </div>
                 <ul id="parkedActivities" style='display:block;' class="features">
                     <div data-ng-repeat="activity in activities track by $index" data-drag="true" jqyoui-draggable="{animate: true}" jqyuoi-droppable="true"> <!--  data-jqyoui-options="{helper: 'clone'}"  jqyoui-draggable="{placeholder:'keep'}"-->
-                    <li class="activityContent" data-drag="true" id= "{{activity.getTypeId()}}" style="cursor: grab" id="{{$index}}"> {{ activity.getLength() }}  min |  {{ activity.getName() }}</li>
+                    <li class="activityContent" data-drag="true" id= "{{activity.getTypeId()}}" style="cursor: grab" id="{{$index}}">
+                      <span ng-click="removeActivity($index)" class="fontawesome-remove"> </span> {{ activity.getLength() }}  min |  {{ activity.getName() }}</li>
                     <button ng-click="removeActivity($index)" class="button2"> Delete Activity</button>
                  </div>
 
