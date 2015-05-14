@@ -290,13 +290,13 @@ function Day(startH,startM,dayId) {
 	};
 
     // Get a forecast
-	this.getForecast = function (callback, time) {
+	this.getForecast = function (callback, time, i) {
 	    var url = "https://api.forecast.io/forecast/0afbc2b67d065d4cab10e996eb9db58a/" + latitude + "," + longitude + "," + time + "?units=si";
 	    $.ajax({
 	        url: url,
 	        dataType: 'jsonp',
 	        success: function (data) {
-	            return callback(data.daily)
+	            return callback(data.daily, i)
 	        }
 	    });
 	};
