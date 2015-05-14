@@ -4,16 +4,13 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
 
       var forecasts = ["", ""];
 
+      // Called by the html to start getting the weather data.
       $scope.getWeather = function () {
           var mycallback = function (returneddata, i) {
-              //display search result in view
-              //console.log(returneddata.data[0].summary);
-              //console.log(forecasts[i].summary)
               var maxTemp = Math.round(returneddata.data[0].apparentTemperatureMax);
               var minTemp = Math.round(returneddata.data[0].apparentTemperatureMin);
-              var icon = returneddata.data[0].icon;
+              //var icon = returneddata.data[0].icon;
               forecasts[i] = maxTemp + "\xB0" + "C / " + minTemp + "\xB0" + "C"
-              //console.log(forecasts[i])
           }
 
           // TODAY & TOMORROW
@@ -45,7 +42,16 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
           });
       };
 
-      $scope.activities = ActivityModel.getParkedActivities();
+      $scope.parkedActivities = ActivityModel.getParkedActivities();
+      $scope.dayActivities = function (dayIndex) {
+          var days = ActivityModel.getDays();
+          return days[dayIndex].getActivities();
+      };
+
+      $scope.dayActivitiesLength = function (dayIndex) {
+          var activities = $scope.dayActivities(dayIndex);
+          return activities.length;
+}
 
       $scope.days = ActivityModel.getDays();
 
@@ -55,7 +61,13 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
       $scope.addDay = function () {
           ActivityModel.addDay();
       };
+      $scope.removeDay = function (dayIndex) {
+          ActivityModel.removeDay(dayIndex);
+      };
       $scope.removeActivity = function (position) {
           ActivityModel.removeParkedActivity(position);
       };
+      $scope.moveActivity = function (oldday, oldposition, newday, newposition) {
+          ActivityModel.moveActivity(oldday, oldposition, newday, newposition)
+}
   }]);

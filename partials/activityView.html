@@ -20,11 +20,12 @@
 
                 <div id="parkedActivities" style='display:block;' class="features">
                      <!-- Creates "activity blocks" based on the parkedActivities found in the model -->
-                    <div data-ng-repeat="activity in activities track by $index">
+                    <div data-ng-repeat="activity in parkedActivities track by $index">
                     <div class="activityContent" data-drag="true" id= "{{activity.getTypeId()}}" style="cursor: grab" id="{{$index}}">
-                        <span ng-click="removeActivity($index)" class="fontawesome-info" style="cursor: default"> </span>
                         <span ng-click="removeActivity($index)" class="fontawesome-remove" style="cursor: default"> </span>
                         {{ activity.getLength() }}  min |  {{ activity.getName() }}
+                        <!-- Warning, the values down below in moveActivity should be changed depending on drag-action -->
+                        <span ng-click="moveActivity(null, $index, 0, dayActivitiesLength)" class="fontawesome-info" style="cursor: default"> >> </span>
                     </div>
 
                  </div>
@@ -51,7 +52,12 @@
                 </div>
                 <div data-drop="true" jqyoui-droppable="{multiple:true}">
                 <div id="activitiesOfTheDay" class="features thumbnail">
-                   <!-- <li></li> -->
+                    <div data-ng-repeat="activity in dayActivities($index) track by $index">
+                        <div class="activityContent" data-drag="true" id="{{activity.getTypeId()}}" style="cursor: grab" id="{{$index}}">
+                            <span ng-click="removeActivity($index)" class="fontawesome-remove" style="cursor: default"> </span>
+                            {{ activity.getLength() }}  min |  {{ activity.getName() }}
+                        </div>
+                    </div>
                 </div>
                 </div>
                 <ul class="pt-footer">

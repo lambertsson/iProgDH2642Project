@@ -76,6 +76,10 @@ function Day(startH,startM,dayId) {
 	this._activities = [];
 	this._index = 0;
 
+	this.getActivities = function () {
+	    return this._activities;
+	}
+
     // sets the index of the day
 	this.setIndex = function (index) {
 	    _index = index;
@@ -218,12 +222,13 @@ function Day(startH,startM,dayId) {
     this.removeDay = function (position){
         this.days.splice(position, 1)[0];
 
+        /*
         // Firebase removes by updating with empty activites
         this.firebase.set({
             day: (position + 1),
             activities: []
         })
-
+        */
     }
 
 	// adds a new day. if startH and startM (start hours and minutes)
@@ -261,10 +266,10 @@ function Day(startH,startM,dayId) {
 	};
 
 	// remove an activity on provided position from parked activites
-	this.removeParkedActivity = function(position) {
-	    console.log(position);
-		this.parkedActivities.splice(position,1)[0];
-
+	this.removeParkedActivity = function (position) {
+	    var activity = this.parkedActivities[position];
+		this.parkedActivities.splice(position,1);
+		return activity;
 	};
 
 	// moves activity between the days, or day and parked activities.
