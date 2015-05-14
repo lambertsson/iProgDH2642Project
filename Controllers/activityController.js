@@ -1,7 +1,6 @@
 activityApp.controller("activityController", ["$scope", "$routeParams", "$location","ModalService", "ActivityModel",
   function($scope,$routeParams,$location,ModalService,ActivityModel) {
-     //$scope.complexResult = null;
-
+      //$scope.complexResult = null;
 
   $scope.showAddActivity = function() {
 
