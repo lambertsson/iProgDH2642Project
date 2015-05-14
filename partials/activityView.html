@@ -18,19 +18,12 @@
                     </p>
                 </div>
                 <ul id="parkedActivities" style='display:block;' class="features">
-<<<<<<< Updated upstream
-                    <div data-ng-repeat="activity in activities track by $index" data-drag="true" jqyoui-draggable="{animate: true}" jqyuoi-droppable="true"> <!--  data-jqyoui-options="{helper: 'clone'}"  jqyoui-draggable="{placeholder:'keep'}"-->
-                    <li class="activityContent" data-drag="true" id= "{{activity.getTypeId()}}" style="cursor: grab" id="{{$index}}">
-                      <span ng-click="removeActivity($index)" class="fontawesome-remove"> </span> {{ activity.getLength() }}  min |  {{ activity.getName() }}</li>
-                    <button ng-click="removeActivity($index)" class="button2"> Delete Activity</button>
-=======
                     <div data-ng-repeat="activity in activities track by $index">
                     <li class="activityContent" data-drag="true" id= "{{activity.getTypeId()}}" style="cursor: grab" id="{{$index}}"> 
-                        <span ng-click="removeActivity($index)" class="fontawesome-info" style="cursor: default"> </span>
+                        <span ng-click="removeActivity($index)" class="fontawesome-info-sign" style="cursor: default"> </span>
                         <span ng-click="removeActivity($index)" class="fontawesome-remove" style="cursor: default"> </span>
                         {{ activity.getLength() }}  min |  {{ activity.getName() }}
                     </li>
->>>>>>> Stashed changes
                  </div>
 
                 </ul>
