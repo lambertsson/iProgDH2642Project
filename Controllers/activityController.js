@@ -3,7 +3,7 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
      //$scope.complexResult = null;
 
 
-  $scope.showComplex = function() {
+  $scope.showAddActivity = function() {
 
     ModalService.showModal({
       templateUrl: "partials/complex.html",
@@ -18,7 +18,6 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
         //$scope.complexResult  = "Name: " + result.name + ", age: " + result.age;
       });
     });
-
   };
 
     $scope.activities = ActivityModel.getParkedActivities();
@@ -33,10 +32,12 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
 
     };
 
-    $scope.go = function ( path ) {
-        console.log("wtf");
+    $scope.removeDay = function ( position ) {
+         console.log(position);
+        ActivityModel.removeDay(position);
+
       //var path = "partials/activityView.html";
-      $location.path( path ).replace();
+      //$location.path( path ).replace();
     };
     }]);
 
