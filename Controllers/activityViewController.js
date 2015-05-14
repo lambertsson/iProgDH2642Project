@@ -18,6 +18,8 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
 
       };
 
+      $scope.lista = {};
+
       $scope.items = ActivityModel.getParkedActivities();
       //console.log("hej" + $scope.items.name);
       $scope.toggleModal = function() {

@@ -17,7 +17,7 @@
                     </p>
                 </div>
                 <ul id="parkedActivities" style='display:block;' class="features">
-                    <div data-ng-repeat="activity in activities track by $index" data-drag="true" jqyoui-draggable="{animate: true}">
+                    <div data-ng-repeat="activity in activities track by $index" data-drag="true" jqyoui-draggable="{animate: true}" jqyuoi-droppable="true"> <!--  data-jqyoui-options="{helper: 'clone'}"  jqyoui-draggable="{placeholder:'keep'}"-->
                     <li class="activityContent" data-drag="true" id= "{{activity.getTypeId()}}" style="cursor: grab" id="{{$index}}"> {{ activity.getLength() }}  min |  {{ activity.getName() }}</li>
                     <button ng-click="removeActivity($index)" class="button2"> Delete Activity</button>
                  </div>
@@ -42,10 +42,11 @@
             </div>
 
                 </div>
-                <ul id="activitiesOfTheDay" data-drop="true" jqyoui-droppable="{multiple:true}" class="features">
+                <div data-drop="true" jqyoui-droppable="{multiple:true}">
+                <ul id="activitiesOfTheDay" class="features thumbnail">
                    <!-- <li></li> -->
                 </ul>
-
+                </div>
                 <ul class="pt-footer">
                     <button data-ng-click="removeDay($index)" class="button2">Remove Day</button>
 
