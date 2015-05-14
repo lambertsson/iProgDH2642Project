@@ -74,16 +74,12 @@ function Day(startH,startM,dayId) {
     this.firebase = new Firebase('https://agenda-planner.firebaseio.com/');
 	this._start = startH * 60 + startM;
 	this._activities = [];
-<<<<<<< HEAD
-	this._dayId = dayId;
-=======
 	this._index = 0;
 
     // sets the index of the day
 	this.setIndex = function (index) {
 	    _index = index;
 	}
->>>>>>> 2c606cd27aca8d21b8567fdce8fafd43ba15fecb
 
 	// sets the start time to new value
 	this.setStart = function(startH,startM) {

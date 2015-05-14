@@ -19,8 +19,8 @@
                     </p>
                 </div>
                 <ul id="parkedActivities" style='display:block;' class="features">
-                    <div data-ng-repeat="activity in activities track by $index">
-                    <li class="activityContent" data-drag="true" id= "{{activity.getTypeId()}}" style="cursor: grab" id="{{$index}}"> {{ activity.getLength() }}  min |  {{ activity.getName() }}</li>
+                    <div data-ng-repeat="activity in activities track by $index" data-drag="true" jqyoui-draggable="{animate: true}">
+                    <li class="activityContent" id= "{{activity.getTypeId()}}" style="cursor: grab" id="{{$index}}"> {{ activity.getLength() }}  min |  {{ activity.getName() }}</li>
                     </div>
 
                 </ul>
@@ -45,7 +45,7 @@
             </div>
 
                 </div>
-                <ul id="activitiesOfTheDay" class="features">
+                <ul id="activitiesOfTheDay" data-drop="true" jqyoui-droppable="{multiple:true}" class="features">
                    <!-- <li></li> -->
                 </ul>
 
