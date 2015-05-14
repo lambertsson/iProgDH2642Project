@@ -18,10 +18,10 @@
                     </p>
                 </div>
 
-                <div id="parkedActivities" style='display:block;' class="features">
+                <div id="parkedActivities" style='display:block;' class="features thumbnail" data-drop="true" jqyoui-droppable="{multiple:true}">
                      <!-- Creates "activity blocks" based on the parkedActivities found in the model -->
                     <div data-ng-repeat="activity in parkedActivities track by $index">
-                    <div class="activityContent" data-drag="true" id= "{{activity.getTypeId()}}" style="cursor: grab" id="{{$index}}">
+                    <div class="activityContent ng-pristine ng-valid ng-binding ui-draggable" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" jqyoui-draggable="{placeholder:true, animate: true}" id="{{activity.getTypeId()}}" style="cursor: grab; z-index: 99;" id="{{$index}}">
                         <span ng-click="removeActivity($index)" class="fontawesome-remove" style="cursor: default"> </span>
                         {{ activity.getLength() }}  min |  {{ activity.getName() }}
                         <!-- Warning, the values down below in moveActivity should be changed depending on drag-action -->
@@ -49,9 +49,11 @@
                 <p style="text-align:left;margin-left: 5px;">Total length: {{ day.getTotalLength() }}</p>
             </div>
 
+          <!--  <div class="btn btn-info btn-draggable ng-pristine ng-valid ng-binding ui-draggable" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list5" jqyoui-draggable="{index: 0,placeholder:true,animate:true}" style="z-index: 100; left: 0px; top: 0px;">Item 1</div> -->
+
                 </div>
                 <div data-drop="true" jqyoui-droppable="{multiple:true}">
-                <div id="activitiesOfTheDay" class="features thumbnail">
+                <div id="activitiesOfTheDay" class="features thumbnail" data-drop="true" jqyoui-droppable="{multiple: true}" style="z-index: 99;">
                     <div data-ng-repeat="activity in dayActivities($index) track by $index">
                         <div class="activityContent" data-drag="true" id="{{activity.getTypeId()}}" style="cursor: grab" id="{{$index}}">
                             <span ng-click="removeActivity($index)" class="fontawesome-remove" style="cursor: default"> </span>
