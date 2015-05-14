@@ -4,7 +4,6 @@ activityApp.controller('ComplexController', ['$scope', '$element', 'title', 'clo
   $scope.name = null;
   $scope.length = null;
   $scope.type = null;
-  $scope.description = null;
   */
   $scope.title = title;
 
@@ -18,6 +17,15 @@ activityApp.controller('ComplexController', ['$scope', '$element', 'title', 'clo
 
       }
       };
+  $scope.cancel = function() {
+    //  Manually hide the modal.
+    $element.modal('hide');
+    //  Now call close, returning control to the caller.
+    close({
+      name: $scope.name,
+      age: $scope.age
+    }, 500); // close, but give 500ms for bootstrap to animate
+  };
       /*
  	  close({
       name: $scope.name,
@@ -30,17 +38,6 @@ activityApp.controller('ComplexController', ['$scope', '$element', 'title', 'clo
       */
   //  This cancel function must use the bootstrap, 'modal' function because
   //  the doesn't have the 'data-dismiss' attribute.
-  $scope.cancel = function() {
 
-    //  Manually hide the modal.
-    $element.modal('hide');
-
-    //  Now call close, returning control to the caller.
-    close({
-
-      name: $scope.name,
-      age: $scope.age
-    }, 500); // close, but give 500ms for bootstrap to animate
-  };
 
 }]);
