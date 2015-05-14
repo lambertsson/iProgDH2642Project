@@ -235,13 +235,13 @@ function Day(startH,startM) {
 	};
 
     // Get a forecast
-	this.getForecast = function (callback, view) {
-	    var url = "https://api.forecast.io/forecast/0afbc2b67d065d4cab10e996eb9db58a/" + latitude + "," + longitude + "?units=si";
+	this.getForecast = function (callback, time) {
+	    var url = "https://api.forecast.io/forecast/0afbc2b67d065d4cab10e996eb9db58a/" + latitude + "," + longitude + "," + time + "?units=si";
 	    $.ajax({
 	        url: url,
 	        dataType: 'jsonp',
 	        success: function (data) {
-	            return callback(data.daily, view)
+	            return callback(data.daily)
 	        }
 	    });
 	};

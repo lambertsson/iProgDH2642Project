@@ -29,7 +29,28 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
   };
     $scope.addDay  = function() {
         ActivityModel.addDay();
+/*
+        // ***************************
+        // Temporary, just for testing.
+        var forecasts;
 
+        var mycallback = function (returneddata) {
+            //display search result in view
+            console.log(returneddata);
+            forecasts.push(returneddata);
+        }
+        // TODAY & TOMORROW
+        
+        var date = new Date(Date.now());
+        for (var i = 0; i <= 1; i++) {
+            date.setDate(date.getDate() + i);
+            var time = date.toISOString();
+            time = time.substring(0, (time.length - 5))
+            ActivityModel.getForecast(mycallback, time)
+        }
+
+        // ***************************
+        */
     };
 
     $scope.removeDay = function ( position ) {
