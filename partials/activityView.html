@@ -3,9 +3,10 @@
 
         <div class="day-table group">
            <h1 class="heading"> Meeting Agenda</h1>
-            <h1 class="weather">
-               <p>Today: <span>{{$weatherToday}}</span></p>
-                <p>Tomorrow: <span ng-bind="$weatherTomorrow"></span></p>
+            <h1 ng-init="getWeather()" class="weather">
+               <p>Today: <span ng-bind="weatherToday"></span></p>
+                <p>Tomorrow: <span ng-bind="weatherTomorrow"></span></p>
+                <button ng-click="getWeather()">Powered by Forecast</button>
             </h1 >
              <!-- Creates "activity blocks" based on the parkedActivities found in the model -->
             <div class="block parked fl">

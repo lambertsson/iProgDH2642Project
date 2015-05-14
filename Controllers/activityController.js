@@ -2,14 +2,18 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
   function($scope,$routeParams,$location,ModalService,ActivityModel) {
       //$scope.complexResult = null;
 
-      var forecasts = [{summary: ""}, {summary: ""}];
+      var forecasts = ["",""];
 
-      this.getWeather = function () {
+      $scope.getWeather = function () {
           var mycallback = function (returneddata, i) {
               //display search result in view
               //console.log(returneddata.data[0].summary);
-              forecasts[i] = returneddata.data[0];
-              console.log(forecasts[i])
+              //console.log(forecasts[i].summary)
+              var maxTemp = Math.round(returneddata.data[0].apparentTemperatureMax);
+              var minTemp = Math.round(returneddata.data[0].apparentTemperatureMin);
+              var icon = returneddata.data[0].icon;
+              forecasts[i] = maxTemp + "\xB0" + "C / " + minTemp + "\xB0" + "C"
+              //console.log(forecasts[i])
           }
 
           // TODAY & TOMORROW
@@ -20,8 +24,9 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
               time = time.substring(0, (time.length - 5))
               ActivityModel.getForecast(mycallback, time, i)
           }
+          $scope.weatherToday = forecasts[0];
+          $scope.weatherTomorrow = forecasts[1];
       }
-      this.getWeather();
 
   $scope.showAddActivity = function() {
 
@@ -40,10 +45,6 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
     });
   };
 
-  $scope.weatherToday = forecasts[0].summary;
-
-  $scope.weatherTomorrow = forecasts[1].summary;
-
     $scope.activities = ActivityModel.getParkedActivities();
 
     $scope.days = ActivityModel.getDays();
@@ -53,13 +54,14 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
   };
     $scope.addDay  = function() {
         ActivityModel.addDay();
-/*
+
         // ***************************
         // Temporary, just for testing.
         
+        forecasts[0] = { summary: 1293991992 };
 
         // ***************************
-        */
+        
 
         console.log($scope.days);
     };
