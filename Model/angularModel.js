@@ -56,6 +56,12 @@ function Activity(name,length,typeid,description){
 	this.getType = function () {
 		return ActivityType[_typeid];
 	};
+
+    // Get object in string to store on firebase.
+	this.getAsJSON = function () {
+	    console.log("Returned the following JSON: " + { name: _name, length: _length, typeid: _typeid, description: _description })
+	    return { name: _name, length: _length, typeid: _typeid, description: _description };
+	}
 	
 }
 
@@ -65,8 +71,15 @@ function Activity(name,length,typeid,description){
 function Day(startH,startM) {
 //activityApp.factory('Day',function (startH,startM){
 
+    this.firebase = new Firebase('https://agenda-planner.firebaseio.com/');
 	this._start = startH * 60 + startM;
 	this._activities = [];
+	this._index = 0;
+
+    // sets the index of the day
+	this.setIndex = function (index) {
+	    _index = index;
+	}
 
 	// sets the start time to new value
 	this.setStart = function(startH,startM) {
@@ -110,19 +123,21 @@ function Day(startH,startM) {
 	// adds an activity to specific position
 	// if the position is not provided then it will add it to the 
 	// end of the list
-	this._addActivity = function(activity,position){
+	this._addActivity = function (activity, position) {
 		if(position != null){
 			this._activities.splice(position,0,activity);
 		} else {
-			this._activities.push(activity);
+		    this._activities.push(activity);
 		}
+		this._updateActivites();
 	};
 	
 	// removes an activity from specific position
 	// this method will be called when needed from the model
 	// don't call it directly
 	this._removeActivity = function(position) {
-		return this._activities.splice(position,1)[0];
+	    return this._activities.splice(position, 1)[0];
+	    this._updateActivites();
 	};
 	
 	// moves activity inside one day
@@ -136,7 +151,20 @@ function Day(startH,startM) {
 		}
 		var activity = this._removeActivity(oldposition);
 		this._addActivity(activity, newposition);
+		this._updateActivites();
 	};
+
+    // Firebase, firebase, does whatever a firebase does.
+	this._updateActivites = function () {
+	    var activitiesJSON = [];
+	    for (var i = 0; i < this._activities.length; i++) {
+	        activitiesJSON.push(this._activities[i].getAsJSON())
+	    }
+	    this.firebase.set({
+	        day: this._index,
+	        activities: activitiesJSON
+	    })
+	}
 	
 }
 
@@ -147,6 +175,7 @@ function Day(startH,startM) {
 
 //var Model = function() {
 	
+    this.firebase = new Firebase('https://agenda-planner.firebaseio.com/');
 	this.days = [];
 	this.parkedActivities = [];
 	var latitude = 59.37496119999999;
@@ -168,8 +197,13 @@ function Day(startH,startM) {
 
     };
     this.removeDay = function (position){
-        this.days.splice(position,1)[0];
+        this.days.splice(position, 1)[0];
 
+        // Firebase removes by updating with empty activites
+        this.firebase.set({
+            day: (position + 1),
+            activities: []
+        })
 
     }
 
@@ -182,6 +216,8 @@ function Day(startH,startM) {
 		} else {
 			day = new Day(8,0);
 		}
+
+		day.setIndex(this.days.length) // Used by firebase
 		this.days.push(day);
 
 		return day;
