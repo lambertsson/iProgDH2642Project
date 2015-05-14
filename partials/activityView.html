@@ -8,7 +8,7 @@
                 <p>Tomorrow: <span ng-bind="weatherTomorrow"></span></p>
                 <button ng-click="getWeather()">Powered by Forecast</button>
             </h1 >
-             <!-- Creates "activity blocks" based on the parkedActivities found in the model -->
+
             <div class="block parked fl">
                 <h2 class="title">Parked</h2>
                 <div class="content">
@@ -17,23 +17,18 @@
 
                     </p>
                 </div>
-                <ul id="parkedActivities" style='display:block;' class="features">
-<<<<<<< Updated upstream
-                    <div data-ng-repeat="activity in activities track by $index" data-drag="true" jqyoui-draggable="{animate: true}" jqyuoi-droppable="true"> <!--  data-jqyoui-options="{helper: 'clone'}"  jqyoui-draggable="{placeholder:'keep'}"-->
-                    <li class="activityContent" data-drag="true" id= "{{activity.getTypeId()}}" style="cursor: grab" id="{{$index}}">
-                      <span ng-click="removeActivity($index)" class="fontawesome-remove"> </span> {{ activity.getLength() }}  min |  {{ activity.getName() }}</li>
-                    <button ng-click="removeActivity($index)" class="button2"> Delete Activity</button>
-=======
+                <div id="parkedActivities" style='display:block;' class="features">
+                     <!-- Creates "activity blocks" based on the parkedActivities found in the model -->
                     <div data-ng-repeat="activity in activities track by $index">
-                    <li class="activityContent" data-drag="true" id= "{{activity.getTypeId()}}" style="cursor: grab" id="{{$index}}"> 
+                    <div class="activityContent" data-drag="true" id= "{{activity.getTypeId()}}" style="cursor: grab" id="{{$index}}">
                         <span ng-click="removeActivity($index)" class="fontawesome-info" style="cursor: default"> </span>
                         <span ng-click="removeActivity($index)" class="fontawesome-remove" style="cursor: default"> </span>
                         {{ activity.getLength() }}  min |  {{ activity.getName() }}
-                    </li>
->>>>>>> Stashed changes
+                    </div>
+
                  </div>
 
-                </ul>
+                </div>
 
 
             </div>
@@ -47,16 +42,16 @@
                 <h2 class="title">Day {{$index +1 }}</h2>
                 <div class="content">
                     <div class="text">
-                <p style="text-align:left;margin-left: 5px;">  Start time: {{ day.getStart() }}</p>
+                <p ng-model="daySetStart" style="text-align:left;margin-left: 5px;">  Start time: {{ day.getStart() }}</p>
                 <p style="text-align:left;margin-left: 5px;">End time: {{ day.getEnd() }}</p>
                 <p style="text-align:left;margin-left: 5px;">Total length: {{ day.getTotalLength() }}</p>
             </div>
 
                 </div>
                 <div data-drop="true" jqyoui-droppable="{multiple:true}">
-                <ul id="activitiesOfTheDay" class="features thumbnail">
+                <div id="activitiesOfTheDay" class="features thumbnail">
                    <!-- <li></li> -->
-                </ul>
+                </div>
                 </div>
                 <ul class="pt-footer">
                     <button data-ng-click="removeDay($index)" class="button2">Remove Day</button>
