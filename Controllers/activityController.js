@@ -51,6 +51,8 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
 
         // ***************************
         */
+
+        console.log($scope.days);
     };
 
     $scope.removeDay = function ( position ) {

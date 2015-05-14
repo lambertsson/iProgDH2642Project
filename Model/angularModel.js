@@ -62,11 +62,12 @@ function Activity(name,length,typeid,description){
 // This is a day consturctor. You can use it to create days, 
 // but there is also a specific function in the Model that adds
 // days to the model, so you don't need call this yourself.
-function Day(startH,startM) {
+function Day(startH,startM,dayId) {
 //activityApp.factory('Day',function (startH,startM){
 
 	this._start = startH * 60 + startM;
 	this._activities = [];
+	this._dayId = dayId;
 
 	// sets the start time to new value
 	this.setStart = function(startH,startM) {
@@ -178,9 +179,9 @@ function Day(startH,startM) {
 	this.addDay = function (startH,startM) {
 		var day;
 		if(startH){
-			day = new Day(startH,startM);
+			day = new Day(startH,startM, this.days.length);
 		} else {
-			day = new Day(8,0);
+			day = new Day(8,0, this.days.length);
 		}
 		this.days.push(day);
 

@@ -16,7 +16,7 @@
                 </div>
                 <ul id="parkedActivities" style='display:block;' class="features">
                     <div data-ng-repeat="activity in activities track by $index">
-                    <li class="activityContent {{activity.getTypeId()}}" style="cursor: grab" id="{{$index}}"> {{ activity.getLength() }}  min |  {{ activity.getName() }}</li>
+                    <li class="activityContent" data-drag="true" id= "{{activity.getTypeId()}}" style="cursor: grab" id="{{$index}}"> {{ activity.getLength() }}  min |  {{ activity.getName() }}</li>
                     </div>
 
                 </ul>
@@ -41,9 +41,9 @@
             </div>
 
                 </div>
-                <div id="activitiesOfTheDay" class="features">
+                <ul id="activitiesOfTheDay" class="features">
                    <!-- <li></li> -->
-                </div>
+                </ul>
 
                 <ul class="pt-footer">
                     <button data-ng-click="removeDay($index)" class="button2">Remove Day</button>
@@ -51,7 +51,6 @@
                 </ul>
 
             </div>
-                <script>dragula([parkedActivities, activitiesOfTheDay])</script>
             </div>
 
             <div class="block parked fl">

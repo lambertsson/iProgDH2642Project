@@ -91,19 +91,19 @@ body {
     padding: 20px 0 10px 0;
 }
 
-.Discussion {
+#Discussion {
   background-color: #48d1cc;
 }
 
-.Break {
+#Break {
   background-color: #48d188;
 }
 
-.Presentation {
+#Presentation {
   background-color: #4892d1;
 }
 
-.Groupwork {
+#Groupwork {
  background-color: #d14891;
 }
 /*arrow creation*/
@@ -122,11 +122,14 @@ body {
     top:0;
 }
 .content:after,.pt-footer:after {
-  border-color: rgba(136, 183, 213, 0); 
+  border-color: ra(136, 183, 213, 0)gb; 
   border-width: 5px;
   margin-left: -5px;
 }
 /*/arrow creation*/
+
+
+
 .text{
     
     display: inline-block;
