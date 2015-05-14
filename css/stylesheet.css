@@ -96,7 +96,7 @@ body {
     font-size: medium; 
     position: relative;
     color: #666666;
-    padding: 20px 0 10px 0;
+    padding: 20px 0px 20px 0px;
 }
 
 #Discussion {
@@ -165,11 +165,11 @@ body {
     background: #FFFFFF;
     text-align: left;
     color: #9C9C9C;
-    padding:30px 22%;
+    padding:30px 10%;
     font-size: 0.9rem;
 }
 .features li{
-    padding:15px 0;
+    padding:15px 15px;
     width: 100%;
 }
 .features li span{
