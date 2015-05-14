@@ -181,10 +181,29 @@ function Day(startH,startM,dayId) {
 	var latitude = 59.37496119999999;
 	var longitude = 17.9644922;
 
-	this.testing = function(){
-		//console.log(5);
-		this.addActivity(new Activity("Idea 1",30,0,""),0);
+	this.testing = function () {
+	    //console.log(5);
+	    //this.addActivity(new Activity("Idea 1",30,0,""),0);
+	    this.firebase.update({
+	        day: 1,
+	        activities: [{ name: "Meeting", length: 5, typeid: 1, description: "Very important!" }, { name: "Meeting 2", length: 10, typeid: 2, description: "Not very important..." }]
+	    })
+	    this.firebase.update({
+	        day: 2,
+	        activities: [{ name: "Meeting 3", length: 15, typeid: 3, description: "Very importantez ueno si!" }, { name: "Meeting 4", length: 20, typeid: 1, description: "Not very important... =(" }]
+	    })
+	    this.firebase.update({
+	        day: 2,
+	        activities: [{ name: "Meeting 54", length: 5, typeid: 1, description: "Very important!" }, { name: "Meeting 222", length: 10, typeid: 2, description: "Not very important..." }]
+	    })
 	}
+	//this.testing();
+
+    // Load day and activity data from firebase.
+	this.loadFirebase = function () {
+
+	}
+	//this.loadFirebase();    // Call it right away!
 
     this.getParkedActivities = function (){
     	//console.log(this.parkedActivities);
@@ -229,7 +248,7 @@ function Day(startH,startM,dayId) {
 			this.days[day]._addActivity(activity,position); }
         else {
 			if (position != null) {
-				
+
 				this.parkedActivities.splice(position,0,activity); }
 			else {this.parkedActivities.push(activity);
 				//console.log("hej!!!!!! " + activity.getName());
@@ -243,8 +262,9 @@ function Day(startH,startM,dayId) {
 
 	// remove an activity on provided position from parked activites
 	this.removeParkedActivity = function(position) {
-		act = this.parkedActivities.splice(position,1)[0];
-		return act;
+	    console.log(position);
+		this.parkedActivities.splice(position,1)[0];
+
 	};
 
 	// moves activity between the days, or day and parked activities.
@@ -271,13 +291,13 @@ function Day(startH,startM,dayId) {
 	};
 
     // Get a forecast
-	this.getForecast = function (callback, time) {
+	this.getForecast = function (callback, time, i) {
 	    var url = "https://api.forecast.io/forecast/0afbc2b67d065d4cab10e996eb9db58a/" + latitude + "," + longitude + "," + time + "?units=si";
 	    $.ajax({
 	        url: url,
 	        dataType: 'jsonp',
 	        success: function (data) {
-	            return callback(data.daily)
+	            return callback(data.daily, i)
 	        }
 	    });
 	};

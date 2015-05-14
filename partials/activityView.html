@@ -4,10 +4,8 @@
         <div class="day-table group">
            <h1 class="heading"> Meeting Agenda</h1>
             <h1 class="weather">
-               <p> weather in three days</p>
-                <img src="img/weather1.png">
-                <img src="img/weather2.png">
-                <img src="img/weather1.png">
+               <p>Today: <span>{{$weatherToday}}</span></p>
+                <p>Tomorrow: <span ng-bind="$weatherTomorrow"></span></p>
             </h1 >
              <!-- Creates "activity blocks" based on the parkedActivities found in the model -->
             <div class="block parked fl">
@@ -20,14 +18,13 @@
                 </div>
                 <ul id="parkedActivities" style='display:block;' class="features">
                     <div data-ng-repeat="activity in activities track by $index" data-drag="true" jqyoui-draggable="{animate: true}">
-                    <li class="activityContent" id= "{{activity.getTypeId()}}" style="cursor: grab" id="{{$index}}"> {{ activity.getLength() }}  min |  {{ activity.getName() }}</li>
-                    </div>
+                    <li class="activityContent" data-drag="true" id= "{{activity.getTypeId()}}" style="cursor: grab" id="{{$index}}"> {{ activity.getLength() }}  min |  {{ activity.getName() }}</li>
+                    <button ng-click="removeActivity($index)" class="button2"> Delete Activity</button>
+                 </div>
 
                 </ul>
 
-                <div class="pt-footer">
-                    <button class="button2"> Delete Activity</button>
-                </div>
+
             </div>
 
          <!-- Creates "day blocks" based on the days found in the model
@@ -39,9 +36,9 @@
                 <h2 class="title">Day {{$index +1 }}</h2>
                 <div class="content">
                     <div class="text">
-                <p style="text-align:left;margin-left: 5px;">  Start time: <input type="text" style="width:100px" name="startTime" id ="startTimeBox" placeholder="08:00" value=""></input></p>
-                <p style="text-align:left;margin-left: 5px;">End time: </p>
-                <p style="text-align:left;margin-left: 5px;">Total length: </p>
+                <p style="text-align:left;margin-left: 5px;">  Start time: {{ day.getStart() }}</p>
+                <p style="text-align:left;margin-left: 5px;">End time: {{ day.getEnd() }}</p>
+                <p style="text-align:left;margin-left: 5px;">Total length: {{ day.getTotalLength() }}</p>
             </div>
 
                 </div>
