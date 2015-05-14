@@ -54,6 +54,14 @@ body {
     padding-right: 0;
 }
 .day-table .heading{
+
+    color: #9C9E9F;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    margin-bottom: 4rem;
+}
+.day-table .weather{
+    text-align:right;
     color: #9C9E9F;
     text-transform: uppercase;
     font-size: 1.3rem;
