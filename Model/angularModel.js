@@ -248,7 +248,7 @@ function Day(startH,startM,dayId) {
 			this.days[day]._addActivity(activity,position); }
         else {
 			if (position != null) {
-				
+
 				this.parkedActivities.splice(position,0,activity); }
 			else {this.parkedActivities.push(activity);
 				//console.log("hej!!!!!! " + activity.getName());
@@ -262,8 +262,9 @@ function Day(startH,startM,dayId) {
 
 	// remove an activity on provided position from parked activites
 	this.removeParkedActivity = function(position) {
-		act = this.parkedActivities.splice(position,1)[0];
-		return act;
+	    console.log(position);
+		this.parkedActivities.splice(position,1)[0];
+
 	};
 
 	// moves activity between the days, or day and parked activities.

@@ -53,6 +53,11 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
   };
     $scope.addDay  = function() {
         ActivityModel.addDay();
+        };
+    $scope.removeActivity = function(position) {
+        ActivityModel.removeParkedActivity(position);
+   
+    };
 /*
         // ***************************
         // Temporary, just for testing.
@@ -61,8 +66,7 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
         // ***************************
         */
 
-        console.log($scope.days);
-    };
+
 
     $scope.removeDay = function ( position ) {
          console.log(position);

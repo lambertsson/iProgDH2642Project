@@ -19,14 +19,12 @@
                 <ul id="parkedActivities" style='display:block;' class="features">
                     <div data-ng-repeat="activity in activities track by $index">
                     <li class="activityContent" data-drag="true" id= "{{activity.getTypeId()}}" style="cursor: grab" id="{{$index}}"> {{ activity.getLength() }}  min |  {{ activity.getName() }}</li>
-                    <button class="button2"> Delete Activity</button>
+                    <button ng-click="removeActivity($index)" class="button2"> Delete Activity</button>
                  </div>
 
                 </ul>
 
-                <div class="pt-footer">
 
-                </div>
             </div>
 
          <!-- Creates "day blocks" based on the days found in the model
