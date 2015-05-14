@@ -1,4 +1,4 @@
-var activityApp = angular.module("activityApp", ["ngRoute","angularModalService"]) //'ngRoute','ngResource'
+var activityApp = angular.module("activityApp", ["ngRoute","angularModalService", "ngDragDrop"]) //'ngRoute','ngResource'
 
 
 .config(['$routeProvider',
