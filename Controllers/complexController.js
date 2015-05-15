@@ -12,7 +12,7 @@ activityApp.controller('ComplexController', ['$scope', '$element', 'title', 'clo
   $scope.close = function() {
       var activity = $scope.result;
       if(activity){
-          ActivityModel.addParkedActivity(new Activity(activity.name,activity.length,activity.type,activity.description,1));
+          ActivityModel.addParkedActivity(new Activity(activity.name,activity.length,activity.type,activity.description,parkedActivities.length));
             console.log(activity);
 
       }

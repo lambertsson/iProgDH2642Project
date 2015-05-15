@@ -185,30 +185,6 @@ function Day(startH,startM,dayId) {
 	var latitude = 59.37496119999999;
 	var longitude = 17.9644922;
 
-	this.testing = function () {
-	    //console.log(5);
-	    //this.addActivity(new Activity("Idea 1",30,0,""),0);
-	    this.firebase.update({
-	        day: 1,
-	        activities: [{ name: "Meeting", length: 5, typeid: 1, description: "Very important!" }, { name: "Meeting 2", length: 10, typeid: 2, description: "Not very important..." }]
-	    })
-	    this.firebase.update({
-	        day: 2,
-	        activities: [{ name: "Meeting 3", length: 15, typeid: 3, description: "Very importantez ueno si!" }, { name: "Meeting 4", length: 20, typeid: 1, description: "Not very important... =(" }]
-	    })
-	    this.firebase.update({
-	        day: 2,
-	        activities: [{ name: "Meeting 54", length: 5, typeid: 1, description: "Very important!" }, { name: "Meeting 222", length: 10, typeid: 2, description: "Not very important..." }]
-	    })
-	}
-	//this.testing();
-
-    // Load day and activity data from firebase.
-	this.loadFirebase = function () {
-
-	}
-	//this.loadFirebase();    // Call it right away!
-
     this.getParkedActivities = function (){
     	//console.log(this.parkedActivities);
         return this.parkedActivities;
@@ -294,6 +270,52 @@ function Day(startH,startM,dayId) {
 		}
 
 	};
+
+	this.testing = function () {
+	    //console.log(5);
+	    //this.addActivity(new Activity("Idea 1",30,0,""),0);
+	    this.firebase.update({
+	        dayp: [{ name: "Meeting", length: 5, typeid: 1, description: "Very important!" }, { name: "Meeting 2", length: 10, typeid: 2, description: "Not very important..." }]
+	    })
+	    this.firebase.update({
+	        day1: [{ name: "Meeting 3", length: 15, typeid: 3, description: "Very importantez ueno si!" }, { name: "Meeting 4", length: 20, typeid: 1, description: "Not very important... =(" }]
+	    })
+	    this.firebase.update({
+	        dayp: [{ name: "Meeting 54", length: 5, typeid: 1, description: "Very important!" }, { name: "Meeting 222", length: 10, typeid: 2, description: "Not very important..." }]
+	    })
+	}
+	//this.testing();
+
+     // Load day and activity data from firebase.
+	this.loadFirebase = function () {
+	    this.firebase.on("value", function (snapshot) {
+	        var snap = snapshot.val();
+            /*
+	        //console.log()
+	        // This should never be final, this will never make the final release. Never!
+	        for (var i = 0; i < snap.dayp.length; i++) {
+	            this.addParkedActivity(new Activity(snap.dayp[i].name, snap.dayp[i].length, snap.dayp[i].typeid, snap.dayp[i].description), i+1)
+	        }
+	        for (var i = 0; i < snap.day1.length; i++) {
+	            this.addDay();
+	            this.addActivity(snap.day1[i], 1, i)
+	        }
+	        for (var i = 0; i < snap.day2.length; i++) {
+	            this.addActivity(snap.day1[i], 2, i)
+	        }
+	        for (var i = 0; i < snap.day3.length; i++) {
+	            this.addActivity(snap.day1[i], 3, i)
+	        }
+	        for (var i = 0; i < snap.day4.length; i++) {
+	            this.addActivity(snap.day1[i], 4, i)
+	        }
+	        for (var i = 0; i < snap.day5.length; i++) {
+	            this.addActivity(snap.day1[i], 5, i)
+	        }
+            */
+	    });
+	}
+	//this.loadFirebase();    // Call it right away!
 
     // Get a forecast
 	this.getForecast = function (callback, time, i) {
