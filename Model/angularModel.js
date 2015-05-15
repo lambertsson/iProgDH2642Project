@@ -140,8 +140,10 @@ function Day(startH,startM,dayId) {
 	// this method will be called when needed from the model
 	// don't call it directly
 	this._removeActivity = function(position) {
-	    return this._activities.splice(position, 1)[0];
-	    this._updateActivites();
+	    var activity = this._activities[position];
+	    this._activities.splice(position, 1);
+	    return activity;
+	    //this._updateActivites();
 	};
 	
 	// moves activity inside one day
@@ -272,6 +274,7 @@ function Day(startH,startM,dayId) {
 	};
 
 	this.testing = function () {
+        /*
 	    //console.log(5);
 	    //this.addActivity(new Activity("Idea 1",30,0,""),0);
 	    this.firebase.update({
@@ -283,6 +286,14 @@ function Day(startH,startM,dayId) {
 	    this.firebase.update({
 	        dayp: [{ name: "Meeting 54", length: 5, typeid: 1, description: "Very important!" }, { name: "Meeting 222", length: 10, typeid: 2, description: "Not very important..." }]
 	    })
+        */
+	    this.addDay();
+	    this.addDay();
+	    this.addActivity(new Activity("Idea 1", 30, 0, ""), 0, 0)
+	    this.addActivity(new Activity("Idea 2", 30, 0, ""), 0, 1)
+	    this.addActivity(new Activity("Idea 3", 30, 0, ""), 1, 0)
+	    this.addActivity(new Activity("Idea 4", 30, 0, ""), 1, 1)
+	    this.firebase.push(this.days);
 	}
 	//this.testing();
 
