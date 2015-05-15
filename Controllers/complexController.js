@@ -10,22 +10,32 @@ activityApp.controller('ComplexController', ['$scope', '$element', 'title', 'clo
   //  This close function doesn't need to use jQuery or bootstrap, because
   //  the button has the 'data-dismiss' attribute.
   $scope.close = function() {
+
+      // Result = models from the input form
       var activity = $scope.result;
+
       if (activity) {
-          var i = ActivityModel.getParkedActivities().length
-          ActivityModel.addParkedActivity(new Activity(activity.name, activity.length, activity.type, activity.description, i));
-          //console.log(activity);
+        var i = ActivityModel.getParkedActivities().length;
+        ActivityModel.addParkedActivity(new Activity(activity.name, activity.length, activity.type, activity.description), i);
+        //console.log(activity);
+      } else {
+        console.log("No data from the activity form.");
       }
-      };
+  };
+
   $scope.cancel = function() {
-    //  Manually hide the modal.
+  //  Manually hide the modal.
     $element.modal('hide');
     //  Now call close, returning control to the caller.
     close({
       name: $scope.name,
       age: $scope.age
-    }, 500); // close, but give 500ms for bootstrap to animate
+      }, 500); // close, but give 500ms for bootstrap to animate
   };
+
+
+
+
       /*
  	  close({
       name: $scope.name,

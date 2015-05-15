@@ -192,11 +192,13 @@ function Day(startH,startM,dayId) {
         return this.parkedActivities;
 
     };
+
     this.getDays = function (){
     	//console.log(this.parkedActivities);
         return this.days;
 
     };
+
     this.removeDay = function (position){
         this.days.splice(position, 1)[0];
 
@@ -222,24 +224,35 @@ function Day(startH,startM,dayId) {
 		day.setIndex(this.days.length) // Used by firebase
 		this.days.push(day);
 
+		console.log("en dag ",day, this.days);
+
 		return day;
 	};
 
 	// add an activity to model
 	this.addActivity = function (activity,day,position) {
-		if(day != null) {
-			this.days[day]._addActivity(activity,position); }
-        else {
-			if (position != null) {
-
-				this.parkedActivities.splice(position,0,activity); }
-			else {this.parkedActivities.push(activity);
-				//console.log("hej!!!!!! " + activity.getName());
-		}		
-	}
+		if(day != null) 
+		{
+			this.days[day]._addActivity(activity,position); 
+		}
+        else 
+        {
+			/*if (position != null) 
+			{
+				this.parkedActivities.splice(position,0,activity); 
+			}
+			else 
+			{*/
+				this.parkedActivities.push(activity);
+			//}		
+		}
+		
+		console.log("En aktivitet: ", activity, this.parkedActivities);
     };
+
 	// add an activity to parked activities
-	this.addParkedActivity = function(activity,position){
+	this.addParkedActivity = function(activity,position) {
+		console.log("addParkedActivity 253, ", activity);
 		this.addActivity(activity,null,position);
 	};
 
@@ -255,15 +268,20 @@ function Day(startH,startM,dayId) {
 	// to move a parked activity to let's say day 0 you set oldday to null
 	// and new day to 0
 	this.moveActivity = function(oldday, oldposition, newday, newposition) {
+
+
+		console.log("oldday:",oldday, ", oldpos:", oldposition,", newday:",newday,", newpos:",newposition);
+
+		
 		if(oldday !== null && oldday == newday) {
 			this.days[oldday]._moveActivity(oldposition,newposition);
-		}else if(oldday == null && newday == null) {
+		} else if(oldday == null && newday == null) {
 			var activity = this.removeParkedActivity(oldposition);
 			this.addParkedActivity(activity,newposition);
-		}else if(oldday == null) {
+		} else if(oldday == null) {
 			var activity = this.removeParkedActivity(oldposition);
 			this.days[newday]._addActivity(activity,newposition);
-		}else if(newday == null) {
+		} else if(newday == null) {
 			var activity = this.days[oldday]._removeActivity(oldposition);
 			this.addParkedActivity(activity,newposition);
 		} else {

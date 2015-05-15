@@ -9,15 +9,20 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
       $scope.newpos;
       $scope.newieday;
 
-      $scope.storeOld = function (oldpos, oldieday) {
+      $scope.storeOld = function (event, ui, oldieday, oldpos) {
         $scope.oldpos = oldpos;
         $scope.oldieday = oldieday;
       }
 
-      $scope.storeNewDay = function (newieday) {
-        $scope.newieday = newieday;
+      $scope.storeNewDay = function (event, ui, newieday, index) {
+        console.log("event: ", event);
+        console.log("ui: ", ui);
+        console.log('newieday: ', newieday);
+        console.log('index: ', index);
 
-        $scope.moveActivity($scope.oldieday, $scope.oldpos, newieday, 1);
+        //$scope.newieday = newieday;
+        console.log("Bara et index?",newieday);
+        $scope.moveActivity($scope.oldieday, $scope.oldpos, newieday, 0);
       }
 
 
@@ -78,9 +83,11 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
       $scope.toggleModal = function () {
           $scope.modalShown = !$scope.modalShown;
       };
+      
       $scope.addDay = function () {
           ActivityModel.addDay();
       };
+
       $scope.removeDay = function (dayIndex) {
           ActivityModel.removeDay(dayIndex);
       };
@@ -88,6 +95,7 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
       $scope.removeActivity = function (position) {
           ActivityModel.removeParkedActivity(position);
       };
+
       $scope.moveActivity = function (oldday, oldposition, newday, newposition) {
           ActivityModel.moveActivity(oldday, oldposition, newday, newposition)
 }

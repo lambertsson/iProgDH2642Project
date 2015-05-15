@@ -101,7 +101,7 @@
         <div class="day-table group">
            <div class="col-sm-3"><h2> Meeting Agenda</h2></div>
             <div ng-init="getWeather()" class="weather">
-               <p>Today: <span ng-bind="weatherToday"></span></p>
+                <p>Today: <span ng-bind="weatherToday"></span></p>
                 <p>Tomorrow: <span ng-bind="weatherTomorrow"></span></p>
                 <button class="btn btn-primary btn-xs" ng-click="getWeather()">Get Weather - Powered by Forecast</button>
             </div>
@@ -115,21 +115,23 @@
                     </p>
                 </div>
 
-                <div id="parkedActivities" style='display:block;' class="features thumbnail" data-drop="true" jqyoui-droppable="{multiple:true}">
+                <div id="parkedActivities" style='display:block;' class="features thumbnail" data-drop="true" jqyoui-droppable="{multiple:true}" ng-model="parkedActivities">
+
                      <!-- Creates "activity blocks" based on the parkedActivities found in the model -->
                     <div data-ng-repeat="activity in parkedActivities track by $index">
 
-                    <div class="activityContent ng-pristine ng-valid ng-binding ui-draggable" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" jqyoui-draggable="{placeholder:true, animate: true, onStart: 'storeOld($index, null)'}" id="{{activity.getTypeId()}}" style="cursor: grab; z-index: 99;" id="{{$index}}">
-                         <!-- Warning, the values down below in moveActivity should be changed depending on drag-action -->
-                        <span ng-click="moveActivity(null, $index, 0, dayActivitiesLength)" class="fontawesome-info-sign" style="cursor: default"> </span>
+                      <!-- Aktivitet -->
+                      <div class="activityContent ng-pristine ng-valid ng-binding ui-draggable" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" jqyoui-draggable="{placeholder:true, animate: true, index: {{$index}}, onStart: 'storeOld(null, $index)'}" id="{{activity.getTypeId()}}" style="cursor: grab; z-index: 99; display: block;" id="{{$index}}">
 
-                        <span ng-click="removeActivity($index)" class="fontawesome-remove" style="cursor: default"> </span>
-                        {{ activity.getLength() }}  min |  {{ activity.getName() }}
-                       
-                       
+                           <!-- Warning, the values down below in moveActivity should be changed depending on drag-action -->
+                          <span ng-click="moveActivity(null, $index, 0, dayActivitiesLength)" class="fontawesome-info-sign" style="cursor: default"> </span>
+                          Index: {{$index}} {{activity}}
+                          <span ng-click="removeActivity($index)" class="fontawesome-remove" style="cursor: default"> </span>
+                          {{ activity.getLength() }}  min |  {{ activity.getName() }}
+                        
+                      </div>
+
                     </div>
-
-                 </div>
 
                 </div>
 
@@ -160,14 +162,16 @@
                 </div>
                 <div data-drop="true" jqyoui-droppable="{multiple:true}">
 
-                  <div id="activitiesOfTheDay" class="features thumbnail ng-pristine ng-valid ui-droppable" data-drop="true" jqyoui-droppable="{multiple: true, onDrop: 'storeNewDay($index)'}" style="z-index: 99;" aria-disabled="false" ng-model="dayList">
+                  <div id="activitiesOfTheDay" class="features thumbnail ng-pristine ng-valid ui-droppable" data-drop="true" jqyoui-droppable="{index: {{$index}}, multiple: true, onDrop: 'storeNewDay(day, $index)'}" style="z-index: 99; display: block" aria-disabled="false" ng-model="dayActivities">
+
                     <div data-ng-repeat="activity in dayActivities($index) track by $index">
                         <div class="activityContent" data-drag="true" id="{{activity.getTypeId()}}" style="cursor: grab">
                             <span ng-click="removeActivity($index)" class="fontawesome-remove" style="cursor: default"> </span>
                             {{ activity.getLength() }}  min |  {{ activity.getName() }}
                         </div>
                     </div>
-                </div>
+
+                  </div>
                 </div>
                 <div class="pt-footer">
                     <button data-ng-click="removeDay($index)" class="button2">Remove Day</button>
