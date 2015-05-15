@@ -59,7 +59,7 @@ function Activity(name,length,typeid,description){
 
     // Get object in string to store on firebase.
 	this.getAsJSON = function () {
-	    console.log("Returned the following JSON: " + { name: _name, length: _length, typeid: _typeid, description: _description })
+	    //console.log("Returned the following JSON: " + { name: _name, length: _length, typeid: _typeid, description: _description })
 	    return { name: _name, length: _length, typeid: _typeid, description: _description };
 	}
 	
@@ -133,7 +133,7 @@ function Day(startH,startM,dayId) {
 		} else {
 		    this._activities.push(activity);
 		}
-		this._updateActivites();
+		//this._updateActivites();
 	};
 	
 	// removes an activity from specific position
@@ -157,7 +157,7 @@ function Day(startH,startM,dayId) {
 		}
 		var activity = this._removeActivity(oldposition);
 		this._addActivity(activity, newposition);
-		this._updateActivites();
+		//this._updateActivites();
 	};
 
     // Firebase, firebase, does whatever a firebase does.
@@ -166,10 +166,14 @@ function Day(startH,startM,dayId) {
 	    for (var i = 0; i < this._activities.length; i++) {
 	        activitiesJSON.push(this._activities[i].getAsJSON())
 	    }
-	    this.firebase.set({
-	        day: this._index,
-	        activities: activitiesJSON
-	    })
+
+	    var d = [day1, day2, day3, day4, day5]
+	    var day = d[this._index];
+        
+	    this.firebase.update({
+	        day:[{ name: "Meeting", length: 5, typeid: 1, description: "Very important!" }, { name: "Meeting 2", length: 10, typeid: 2, description: "Not very important..." }]
+	});
+        
 	}
 	
 }
@@ -292,7 +296,6 @@ function Day(startH,startM,dayId) {
 	};
 
 	this.testing = function () {
-        /*
 	    //console.log(5);
 	    //this.addActivity(new Activity("Idea 1",30,0,""),0);
 	    this.firebase.update({
@@ -304,50 +307,54 @@ function Day(startH,startM,dayId) {
 	    this.firebase.update({
 	        dayp: [{ name: "Meeting 54", length: 5, typeid: 1, description: "Very important!" }, { name: "Meeting 222", length: 10, typeid: 2, description: "Not very important..." }]
 	    })
-        
-	    this.addDay();
-	    this.addDay();
-	    this.addActivity(new Activity("Idea 1", 30, 0, ""), 0, 0)
-	    this.addActivity(new Activity("Idea 2", 30, 0, ""), 0, 1)
-	    this.addActivity(new Activity("Idea 3", 30, 0, ""), 1, 0)
-	    this.addActivity(new Activity("Idea 4", 30, 0, ""), 1, 1)
-	    this.firebase.push(this.days);
-        */
-
-
+	    this.firebase.update({
+	        day2: [{ name: "Meeting 4212", length: 15, typeid: 2, description: "Very importantez ueno si des vartes is this language?!" }, { name: "Meeting four or something", length: 220, typeid: 3, description: "Not very important... No senior, que is not importante" }]
+	    })
 	}
 	//this.testing();
 
-     // Load day and activity data from firebase.
-	this.loadFirebase = function () {
-	    this.firebase.on("value", function (snapshot) {
-	        var snap = snapshot.val();
-            /*
-	        //console.log()
-	        // This should never be final, this will never make the final release. Never!
-	        for (var i = 0; i < snap.dayp.length; i++) {
-	            this.addParkedActivity(new Activity(snap.dayp[i].name, snap.dayp[i].length, snap.dayp[i].typeid, snap.dayp[i].description), i+1)
-	        }
-	        for (var i = 0; i < snap.day1.length; i++) {
-	            this.addDay();
-	            this.addActivity(snap.day1[i], 1, i)
-	        }
-	        for (var i = 0; i < snap.day2.length; i++) {
-	            this.addActivity(snap.day1[i], 2, i)
-	        }
-	        for (var i = 0; i < snap.day3.length; i++) {
-	            this.addActivity(snap.day1[i], 3, i)
-	        }
-	        for (var i = 0; i < snap.day4.length; i++) {
-	            this.addActivity(snap.day1[i], 4, i)
-	        }
-	        for (var i = 0; i < snap.day5.length; i++) {
-	            this.addActivity(snap.day1[i], 5, i)
-	        }
-            */
+	this.getFirebase = function (callback) {
+	    this.firebase.once("value", function (snapshot) {
+	        return callback(snapshot.val())
 	    });
 	}
-	//this.loadFirebase();    // Call it right away!
+
+     // Load day and activity data from firebase.
+	this.loadFirebase = function (ref) {
+	    var mycallback = function (snap) {
+	        // This should never be final, this will never make the final release. Never!
+	        for (var i = 0; i < snap.dayp.length; i++) {
+	            ref.addParkedActivity(new Activity(snap.dayp[i].name, snap.dayp[i].length, snap.dayp[i].typeid, snap.dayp[i].description), i+1)
+	        }
+	        for (var i = 0; i < snap.day1.length; i++) {
+	            if (i == 0)
+	                ref.addDay();
+	            ref.addActivity(new Activity(snap.day1[i].name, snap.day1[i].length, snap.day1[i].typeid, snap.day1[i].description), 0, i)
+	        }
+	        for (var i = 0; i < snap.day2.length; i++) {
+	            if (i == 0)
+	                ref.addDay();
+	            ref.addActivity(new Activity(snap.day2[i].name, snap.day2[i].length, snap.day2[i].typeid, snap.day2[i].description), 1, i)
+	        }
+	        for (var i = 0; i < snap.day3.length; i++) {
+	            if (i == 0)
+	                ref.addDay();
+	            ref.addActivity(new Activity(snap.day3[i].name, snap.day3[i].length, snap.day3[i].typeid, snap.day3[i].description), 2, i)
+	        }
+	        for (var i = 0; i < snap.day4.length; i++) {
+	            if (i == 0)
+	                ref.addDay();
+	            ref.addActivity(new Activity(snap.day4[i].name, snap.day4[i].length, snap.day4[i].typeid, snap.day4[i].description), 3, i)
+	        }
+	        for (var i = 0; i < snap.day5.length; i++) {
+	            if (i == 0)
+	                ref.addDay();
+	            ref.addActivity(new Activity(snap.day5[i].name, snap.day5[i].length, snap.day5[i].typeid, snap.day5[i].description), 4, i)
+	        }
+	    }
+	    this.getFirebase(mycallback)
+	}
+	//this.loadFirebase(this);    // Call it right away!
 
     // Get a forecast
 	this.getForecast = function (callback, time, i) {
