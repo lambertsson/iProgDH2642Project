@@ -83,6 +83,8 @@ body {
     text-transform: capitalize;
     line-height: 2.5;
     position: relative;
+    margin-top:5px;
+    margin-bottom:5px;
 }
 .content{
     font-size: medium; 
@@ -166,6 +168,7 @@ body {
     color: #9C9C9C;
     padding:40px 5%;
     font-size: 0.9rem;
+    min-height:250px;
 }
 .features li{
     padding:15px 15px;
