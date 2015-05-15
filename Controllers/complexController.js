@@ -11,11 +11,10 @@ activityApp.controller('ComplexController', ['$scope', '$element', 'title', 'clo
   //  the button has the 'data-dismiss' attribute.
   $scope.close = function() {
       var activity = $scope.result;
-      if(activity){
-          ActivityModel.addParkedActivity(new Activity(activity.name, activity.length, activity.type, activity.description, ActivityModel.getParkedActivities().length));
+      if (activity) {
+          var i = ActivityModel.getParkedActivities().length
+          ActivityModel.addParkedActivity(new Activity(activity.name, activity.length, activity.type, activity.description, i));
           //console.log(activity);
-          //console.log(ActivityModel.getParkedActivities().length)
-
       }
       };
   $scope.cancel = function() {
