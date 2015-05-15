@@ -99,8 +99,8 @@
 <div id="activityView" class="wrapper">
 
         <div class="day-table group">
-           <div class="col-sm-3"><h2> Meeting Agenda</h2></div>
-            <div ng-init="getWeather()" class="weather">
+           <div class="col-sm-3"><h2><span ng-click="refresh(0)" class="fontawesome-refresh" style="cursor: pointer"></span> Meeting Agenda</h2></div>
+            <div ng-init="getWeather(); refresh(1000)" class="weather">
                 <p>Today: <span ng-bind="weatherToday"></span></p>
                 <p>Tomorrow: <span ng-bind="weatherTomorrow"></span></p>
                 <button class="btn btn-primary btn-xs" ng-click="getWeather()">Get Weather - Powered by Forecast</button>
@@ -174,24 +174,16 @@
                   </div>
                 </div>
                 <div class="pt-footer">
-                    <button data-ng-click="removeDay($index)" class="button2">Remove Day</button>
-
+                    <button data-ng-click="removeDay($index); hideButton()" class="button2">Remove Day</button>
                 </div>
-
             </div>
             </div>
 
             <div class="block parked fl">
                 <div class="content" style="margin-top:20px">
-                   
-                        <button data-ng-click="addDay()" id="addDayBtn" class="button3"> +Add Day</button>
-                    
+                        <button data-ng-click="addDay(); hideButton()" id="addDayBtn" class="button3"> +Add Day</button>
                 </div>
-
             </div>
-
-             
-
         </div>
     </div>
 
