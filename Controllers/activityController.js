@@ -97,10 +97,12 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
       }
 
       // Make things refresh, because we need to iron out a few bugs...
-      $scope.refresh = function () {
-          $scope.weatherToday = forecasts[0];
-          $scope.weatherTomorrow = forecasts[1];
-          setTimeout(function () { $scope.$apply() }, 1000)
+      $scope.refresh = function (time) {
+          setTimeout(function () {
+              $scope.$apply()
+              $scope.weatherToday = forecasts[0];
+              $scope.weatherTomorrow = forecasts[1];
+          }, time)
       }
 
       $scope.removeDay = function (dayIndex) {
