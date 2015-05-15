@@ -60,6 +60,15 @@ function Activity(name, length, typeid, description) {
     // Get object in string to store on firebase.
     this.getAsJSON = function () {
         //console.log("Returned the following JSON: " + { name: _name, length: _length, typeid: _typeid, description: _description })
+        if (_name == undefined)
+            n = " ";
+        if (_length == undefined)
+            l = 0;
+        if (_typeid == undefined)
+            t = 0;
+        if (_description == undefined) {
+            d = " ";
+        }
         return { name: _name, length: _length, typeid: _typeid, description: _description };
     }
 
