@@ -286,7 +286,7 @@ function Day(startH,startM,dayId) {
 	    this.firebase.update({
 	        dayp: [{ name: "Meeting 54", length: 5, typeid: 1, description: "Very important!" }, { name: "Meeting 222", length: 10, typeid: 2, description: "Not very important..." }]
 	    })
-        */
+        
 	    this.addDay();
 	    this.addDay();
 	    this.addActivity(new Activity("Idea 1", 30, 0, ""), 0, 0)
@@ -294,6 +294,9 @@ function Day(startH,startM,dayId) {
 	    this.addActivity(new Activity("Idea 3", 30, 0, ""), 1, 0)
 	    this.addActivity(new Activity("Idea 4", 30, 0, ""), 1, 1)
 	    this.firebase.push(this.days);
+        */
+
+
 	}
 	//this.testing();
 
