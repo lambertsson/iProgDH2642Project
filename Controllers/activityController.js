@@ -21,6 +21,8 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
 
       // Called by the html to start getting the weather data.
       $scope.getWeather = function () {
+
+          // Callback function called once the https request to the API gets a JSON as result.
           var mycallback = function (returneddata, i) {
               var maxTemp = Math.round(returneddata.data[0].apparentTemperatureMax);
               var minTemp = Math.round(returneddata.data[0].apparentTemperatureMin);
@@ -28,7 +30,7 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
               forecasts[i] = maxTemp + "\xB0" + "C / " + minTemp + "\xB0" + "C"
           }
 
-          // TODAY & TOMORROW
+          // This loop gets today and tomorrow.
           var date = new Date(Date.now());
           for (var i = 0; i <= 1; i++) {
               date.setDate(date.getDate() + i);
@@ -36,12 +38,13 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
               time = time.substring(0, (time.length - 5))
               ActivityModel.getForecast(mycallback, time, i)
           }
+
+          // Used to set the view - but has to do it twice! Weird...
           $scope.weatherToday = forecasts[0];
           $scope.weatherTomorrow = forecasts[1];
       }
 
       $scope.showAddActivity = function () {
-
           ModalService.showModal({
               templateUrl: "partials/complex.html",
               controller: "ComplexController",
@@ -66,7 +69,7 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
       $scope.dayActivitiesLength = function (dayIndex) {
           var activities = $scope.dayActivities(dayIndex);
           return activities.length;
-}
+      }
 
       $scope.days = ActivityModel.getDays();
 
@@ -79,6 +82,7 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
       $scope.removeDay = function (dayIndex) {
           ActivityModel.removeDay(dayIndex);
       };
+
       $scope.removeActivity = function (position) {
           ActivityModel.removeParkedActivity(position);
       };
