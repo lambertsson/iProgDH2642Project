@@ -61,13 +61,13 @@ function Activity(name, length, typeid, description) {
     this.getAsJSON = function () {
         //console.log("Returned the following JSON: " + { name: _name, length: _length, typeid: _typeid, description: _description })
         if (_name == undefined)
-            n = " ";
+            _name = " ";
         if (_length == undefined)
-            l = 0;
+            _length = 0;
         if (_typeid == undefined)
-            t = 0;
+            _typeid = 0;
         if (_description == undefined) {
-            d = " ";
+            _description = " ";
         }
         return { name: _name, length: _length, typeid: _typeid, description: _description };
     }
