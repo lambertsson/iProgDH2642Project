@@ -22,7 +22,7 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
 
         //$scope.newieday = newieday;
         console.log("Bara et index?",newieday);
-        $scope.moveActivity($scope.oldieday, $scope.oldpos, newieday, 0);
+        $scope.moveActivity($scope.oldieday, $scope.oldpos, index, 0);
       }
 
 
