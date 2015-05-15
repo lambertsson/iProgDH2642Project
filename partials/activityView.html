@@ -147,10 +147,10 @@
                 <h2 class="title">Day {{$index +1 }}</h2>
                 <div class="content">
                     <div class="text">
-                    <div style="width:60px; height:80px;float:left; background-color:#d14891" ></div> 
-                     <div style="width:140px; height:80px;float:left; " >   
-
-                <input type="time" id="exampleInput" name="input" ng-model="example.value"
+                    <div style="width:50px; height:100px;float:left; border:1px solid; margin-right:5px" ></div> 
+                     <div style="width:150px; height:100px;float:left; text-align:left" >   
+                       <p >Start time：</p>
+                <input type="time" id="exampleInput" name="input" ng-model="example.value" style="width:140px"
                     placeholder="HH:mm" min="08:00"/>
                 
                 <p >End time: {{ day.getEnd() }}</p>
