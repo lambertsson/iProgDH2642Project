@@ -4,6 +4,21 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
 
       var forecasts = ["", ""];
 
+      $scope.newpos;
+      $scope.newieday;
+
+      $scope.storeOld = function (oldpos, oldieday) {
+        $scope.oldpos = oldpos;
+        $scope.oldieday = oldieday;
+      }
+
+      $scope.storeNewDay = function (newieday) {
+        $scope.newieday = newieday;
+
+        $scope.moveActivity($scope.oldpos, $scope.oldieday, newieday, 1);
+      }
+
+
       // Called by the html to start getting the weather data.
       $scope.getWeather = function () {
           var mycallback = function (returneddata, i) {
@@ -70,4 +85,5 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
       $scope.moveActivity = function (oldday, oldposition, newday, newposition) {
           ActivityModel.moveActivity(oldday, oldposition, newday, newposition)
 }
+
   }]);
