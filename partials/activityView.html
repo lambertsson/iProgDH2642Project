@@ -29,7 +29,7 @@
                            <!-- Warning, the values down below in moveActivity should be changed depending on drag-action -->
                           <span ng-click="moveActivity(null, $index, 0, dayActivitiesLength)" class="fontawesome-info-sign" style="cursor: default"> </span>
                           Index: {{$index}} {{activity}}
-                          <span ng-click="removeActivity($index)" class="fontawesome-remove" style="cursor: default"> </span>
+                          <span ng-click="removeParkedActivity($index)" class="fontawesome-remove" style="cursor: default"> </span>
                           {{ activity.getLength() }}  min |  {{ activity.getName() }}
                         
                       </div>
@@ -78,7 +78,7 @@
 
                     <div data-ng-repeat="activity in dayActivities($index) track by $index">
                         <div class="activityContent ng-pristine ng-valid ng-binding ui-draggable" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" jqyoui-draggable="{placeholder:true, animate: true, index: {{$index}}, onStart: 'storeOld(null, $index)'}" id="{{activity.getTypeId()}}" style="cursor: grab; cursor: -webkit-grab; cursor: -moz-grab; z-index: 99; display: block;" >
-                            <span ng-click="removeActivity($index)" class="fontawesome-remove" style="cursor: default"> </span>
+                            <!--<span ng-click="removeActivity($index, activity)" class="fontawesome-remove" style="cursor: default"> </span>-->
                             {{ activity.getLength() }}  min |  {{ activity.getName() }}
                         </div>
                     </div>

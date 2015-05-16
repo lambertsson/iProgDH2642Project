@@ -115,9 +115,15 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
           ActivityModel.removeDay(dayIndex);
       };
 
-      $scope.removeActivity = function (position) {
+      $scope.removeParkedActivity = function (position) {
           ActivityModel.removeParkedActivity(position);
       };
+
+      /*
+      $scope.removeActivity = function (position, activity) {
+          ActivityModel.removeActivity(position);
+      };
+      */
 
       $scope.moveActivity = function (oldday, oldposition, newday, newposition) {
           ActivityModel.moveActivity(oldday, oldposition, newday, newposition)

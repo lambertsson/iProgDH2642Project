@@ -302,6 +302,22 @@ activityApp.factory('ActivityModel', function () {
         return activity;
     };
 
+    /*
+    this.removeActivity = function (activity) {
+        console.log(activity)
+        var days = this.getDays();
+        for (var i = 0; i < days.length; i++) {
+            var activities = days[i].getActivities();
+            for (var j = 0; j < activities.length; j++) {
+                // This is so ugly... I'm ashamed of it.
+                if (activities[j].getName() == activity.getName() && activities[j].getTypeId() == activity.getTypeId() && activities[j].getLength() == activity.getLength() && activities[j].getDescription() == activity.getDescription()) {
+                    days[i].removeActivity(j);
+                }
+            }
+        }
+    }
+    */
+
     // moves activity between the days, or day and parked activities.
     // to park activity you need to set the new day to null
     // to move a parked activity to let's say day 0 you set oldday to null
