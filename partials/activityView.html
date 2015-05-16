@@ -2,8 +2,8 @@
 <div id="activityView" class="wrapper">
 
         <div class="day-table group">
-           <div class="col-sm-3"><h2> Meeting Agenda</h2></div>
-            <div ng-init="getWeather()" class="weather">
+           <div class="col-sm-3"><h2><span ng-click="refresh(0)" class="fontawesome-refresh" style="cursor: pointer"></span> Meeting Agenda</h2></div>
+            <div ng-init="getWeather(); refresh(1000)" class="weather">
                 <p>Today: <span ng-bind="weatherToday"></span></p>
                 <p>Tomorrow: <span ng-bind="weatherTomorrow"></span></p>
                 <button class="btn btn-primary btn-xs" ng-click="getWeather()">Get Weather - Powered by Forecast</button>
@@ -50,6 +50,7 @@
                 <h2 class="title">Day {{$index +1 }}</h2>
                 <div class="content">
                     <div class="text">
+
                     <div style="width:60px; height:80px;float:left; background-color:#d14891" ></div> 
 <!-- Need some styling! -->       
                 <div ng-controller="ctrl">
@@ -66,7 +67,7 @@
                 <p>End time: {{ day.getEnd() }}</p>
                 <p>Total length: {{ day.getTotalLength() }} min </p>
                 </div>
-            </div>
+
 
           <!--  <div class="btn btn-info btn-draggable ng-pristine ng-valid ng-binding ui-draggable" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list5" jqyoui-draggable="{index: 0,placeholder:true,animate:true}" style="z-index: 100; left: 0px; top: 0px;">Item 1</div> -->
 
@@ -85,24 +86,16 @@
                   </div>
                 </div>
                 <div class="pt-footer">
-                    <button data-ng-click="removeDay($index)" class="button2">Remove Day</button>
-
+                    <button data-ng-click="removeDay($index); hideButton()" class="button2">Remove Day</button>
                 </div>
-
             </div>
             </div>
 
             <div class="block parked fl">
                 <div class="content" style="margin-top:20px">
-                   
-                        <button data-ng-click="addDay()" id="addDayBtn" class="button3"> +Add Day</button>
-                    
+                        <button data-ng-click="addDay(); hideButton()" id="addDayBtn" class="button3"> +Add Day</button>
                 </div>
-
             </div>
-
-             
-
         </div>
     </div>
 

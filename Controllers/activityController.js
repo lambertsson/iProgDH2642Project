@@ -94,6 +94,23 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
           ActivityModel.addDay();
       };
 
+      // Because our current model only supports five days.
+      $scope.hideButton = function () {
+          if($scope.days.length == 5)
+              $('#addDayBtn').css("visibility", "hidden")
+          else
+              $('#addDayBtn').css("visibility", "visible")
+      }
+
+      // Make things refresh, because we need to iron out a few bugs...
+      $scope.refresh = function (time) {
+          setTimeout(function () {
+              $scope.$apply()
+              $scope.weatherToday = forecasts[0];
+              $scope.weatherTomorrow = forecasts[1];
+          }, time)
+      }
+
       $scope.removeDay = function (dayIndex) {
           ActivityModel.removeDay(dayIndex);
       };
