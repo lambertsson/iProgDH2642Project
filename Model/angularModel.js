@@ -289,16 +289,28 @@ activityApp.factory('ActivityModel', function () {
         console.log("En aktivitet: ", activity, this.parkedActivities);
     };
 
+    this.updateParkedActivitiesOnFirebase = function () {
+        // Keep parked activities on Firebase.
+        var parkedJSON = [];
+        for (var i = 0; i < this.parkedActivities.length; i++)
+            parkedJSON.push(this.parkedActivities[i].getAsJSON())
+        this.firebase.update({
+            dayp: parkedJSON
+        })
+    }
+
     // add an activity to parked activities
     this.addParkedActivity = function (activity, position) {
         console.log("addParkedActivity 253, ", activity);
         this.addActivity(activity, null, position);
+        this.updateParkedActivitiesOnFirebase();
     };
 
     // remove an activity on provided position from parked activites
     this.removeParkedActivity = function (position) {
         var activity = this.parkedActivities[position];
         this.parkedActivities.splice(position, 1);
+        this.updateParkedActivitiesOnFirebase();
         return activity;
     };
 
