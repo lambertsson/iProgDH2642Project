@@ -1,101 +1,4 @@
 
-  
-<!-- 
-  <div id="activityView" class="wrapper">
-
-        <div class="day-table group">
-           <div class="col-sm-3"><h2> Meeting Agenda</h2></div>
-            <div ng-init="getWeather()" class="weather">
-               <p>Today: <span ng-bind="weatherToday"></span></p>
-                <p>Tomorrow: <span ng-bind="weatherTomorrow"></span></p>
-                <button class="btn btn-primary btn-xs" ng-click="getWeather()">Get Weather - Powered by Forecast</button>
-            </div>
-
-            <div class="block parked fl">
-                <h2 class="title">Parked</h2>
-                <div class="content">
-                    <p class="text">
-                        <button data-ng-click='showAddActivity()' id="addActivityBtn" class="button3"> +Add Activity</button>
-
-                    </p>
-                </div>
-
-                <div id="parkedActivities" style='display:block;' class="features thumbnail" data-drop="true" jqyoui-droppable="{multiple:true}">
-                      Creates "activity blocks" based on the parkedActivities found in the model 
-                    <div data-ng-repeat="activity in parkedActivities track by $index">
-                    <div class="activityContent ng-pristine ng-valid ng-binding ui-draggable" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" jqyoui-draggable="{placeholder:true, animate: true, onStart: 'storeOld($index, null)'}" id="{{activity.getTypeId()}}" style="cursor: grab; z-index: 99;" id="{{$index}}">
-                    <div class="activityContent ng-pristine ng-valid ng-binding ui-draggable" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" jqyoui-draggable="{placeholder:true, animate: true}" id="{{activity.getTypeId()}}" style="cursor: grab; z-index: 99;" id="{{$index}}">
-                          Warning, the values down below in moveActivity should be changed depending on drag-action 
-                        <span ng-click="moveActivity(null, $index, 0, dayActivitiesLength)" class="fontawesome-info-sign" style="cursor: default"> </span>
-                        <span ng-click="removeActivity($index)" class="fontawesome-remove" style="cursor: default"> </span>
-                        {{ activity.getLength() }}  min |  {{ activity.getName() }}                       
-                    </div>
-
-                 </div>
-
-                </div>
-
-
-            </div>
-          </div>
-
-<div class="thumbnail ng-pristine ng-valid ui-droppable" data-drop="true" ng-model="list1" data-jqyoui-options="optionsList1" jqyoui-droppable="{multiple:true}" aria-disabled="false">
-                </div> 
-
-          Creates "day blocks" based on the days found in the model
-         <div ng-include="'Test/dragulascript.html'">
-          
-
-        <div data-ng-repeat="day in days track by $index">
-
-         <div class="block parked fl">
-                <h2 class="title">Day {{$index +1 }}</h2>
-                <div class="content">
-                    <div class="text">
-                    <div style="width:60px; height:80px;float:left; background-color:#d14891" ></div> 
-                     <div style="width:140px; height:80px;float:left; " >   
-                <p ng-model="daySetStart" >Start time: {{ day.getStart() }}</p>
-                <p >End time: {{ day.getEnd() }}</p>
-                <p >Total length: {{ day.getTotalLength() }}</p></div>
-            </div>
-
-          <div class="btn btn-info btn-draggable ng-pristine ng-valid ng-binding ui-draggable" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list5" jqyoui-draggable="{index: 0,placeholder:true,animate:true}" style="z-index: 100; left: 0px; top: 0px;">Item 1</div> 
-
-                </div>
-                <div data-drop="true" jqyoui-droppable="{multiple:true}">
-                <div id="activitiesOfTheDay" class="features thumbnail ng-pristine ng-valid ui-droppable" data-drop="true" jqyoui-droppable="{multiple: true, onDrop: 'storeNewDay($index)'}" style="z-index: 99;" aria-disabled="false" ng-model="lista">
-                <div ng-model="dayList" id="activitiesOfTheDay" class="features thumbnail" data-drop="true" jqyoui-droppable="{multiple: true}" style="z-index: 99;">
-                    <div data-ng-repeat="activity in dayActivities($index) track by $index">
-                        <div class="activityContent" data-drag="true" id="{{activity.getTypeId()}}" style="cursor: grab" id="{{$index}}">
-                            <span ng-click="removeActivity($index)" class="fontawesome-remove" style="cursor: default"> </span>
-                            {{ activity.getLength() }}  min |  {{ activity.getName() }}
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <div class="pt-footer">
-                    <button data-ng-click="removeDay($index)" class="button2">Remove Day</button>
-
-                </div>
-
-            </div>
-            </div>
-
-            <div class="block parked fl">
-                <div class="content">
-                    <p class="text">
-                        <button data-ng-click="addDay()" id="addDayBtn" class="button3"> +Add Day</button>
-                    </p>
-                </div>
-
-            </div>
-
-             
-
-        </div>
-    </div>
-  </div>
---> 
 <div id="activityView" class="wrapper">
 
         <div class="day-table group">
@@ -148,13 +51,21 @@
                 <div class="content">
                     <div class="text">
                     <div style="width:60px; height:80px;float:left; background-color:#d14891" ></div> 
-                     <div style="width:140px; height:80px;float:left; " >   
-
-                <input type="time" id="exampleInput" name="input" ng-model="example.value"
-                    placeholder="HH:mm" min="08:00"/>
-                
-                <p >End time: {{ day.getEnd() }}</p>
-                <p >Total length: {{ day.getTotalLength() }} min </p></div>
+<!-- Need some styling! -->       
+                <div ng-controller="ctrl">
+                <form name="myForm">
+                <p>Start time: </p>
+               <input id="input-text" name="input" type="time" placeholder="HH:mm" 
+                      ng-model="startTime" ng-blur="showValues(day)" />
+               <span style="align;left" class="error" ng-show="myForm.input.$error.time">
+                        Not a valid time!<BR></span>
+                </form>
+                </div>
+<!-- Need some styling! -->  
+                <div style="width:140px; height:80px;float:left; " >
+                <p>End time: {{ day.getEnd() }}</p>
+                <p>Total length: {{ day.getTotalLength() }} min </p>
+                </div>
             </div>
 
           <!--  <div class="btn btn-info btn-draggable ng-pristine ng-valid ng-binding ui-draggable" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list5" jqyoui-draggable="{index: 0,placeholder:true,animate:true}" style="z-index: 100; left: 0px; top: 0px;">Item 1</div> -->
@@ -165,7 +76,7 @@
                   <div id="activitiesOfTheDay" class="features thumbnail ng-pristine ng-valid ui-droppable" data-drop="true" jqyoui-droppable="{index: {{$index}}, multiple: true, onDrop: 'storeNewDay(day, $index)'}" style="z-index: 99; display: block; margin-bottom:0px" aria-disabled="false" ng-model="dayActivities">
 
                     <div data-ng-repeat="activity in dayActivities($index) track by $index">
-                        <div class="activityContent ng-pristine ng-valid ng-binding ui-draggable" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" jqyoui-draggable="{placeholder:true, animate: true, index: {{$index}}, onStart: 'storeOld(null, $index)'}" id="{{activity.getTypeId()}}" style="cursor: grab; cursor: -webkit-grab; cursor: -moz-grab; z-index: 99; display: block;" id="{{$index}}">
+                        <div class="activityContent ng-pristine ng-valid ng-binding ui-draggable" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" jqyoui-draggable="{placeholder:true, animate: true, index: {{$index}}, onStart: 'storeOld(null, $index)'}" id="{{activity.getTypeId()}}" style="cursor: grab; cursor: -webkit-grab; cursor: -moz-grab; z-index: 99; display: block;" >
                             <span ng-click="removeActivity($index)" class="fontawesome-remove" style="cursor: default"> </span>
                             {{ activity.getLength() }}  min |  {{ activity.getName() }}
                         </div>

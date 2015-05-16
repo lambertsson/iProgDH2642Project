@@ -345,4 +345,6 @@ button {
   font-weight: bold;
   font-family: 'arial', 'sans-serif';
 }
-
+#input-text {
+  color: #D14891;
+}

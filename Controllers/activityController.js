@@ -80,6 +80,12 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
 
       $scope.days = ActivityModel.getDays();
 
+      $scope.setStartTime = function(){
+        console.log("hej");
+        $scope.mytime1 = new Date();
+      }
+      
+
       $scope.toggleModal = function () {
           $scope.modalShown = !$scope.modalShown;
       };
