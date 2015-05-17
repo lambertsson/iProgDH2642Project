@@ -25,8 +25,8 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
 
 
         //replace 0 below with the new day. 
-        console.log("Bara et index?",newieday);
-        $scope.moveActivity($scope.oldieday, $scope.oldpos, 0, index);
+        console.log("New day",newieday);
+        $scope.moveActivity($scope.oldieday, $scope.oldpos, index, 0);
       }
 
 
