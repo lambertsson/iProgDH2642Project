@@ -76,6 +76,11 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
           var days = ActivityModel.getDays();
           return days[dayIndex].getActivities();
       };
+      $scope.getDay = function(dayIndex) {
+          var days = ActivityModel.getDays();
+          alert(days[dayIndex]);
+          return days[dayIndex];
+      }
 
       $scope.dayActivitiesLength = function (dayIndex) {
           var activities = $scope.dayActivities(dayIndex);
@@ -85,7 +90,7 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
       $scope.days = ActivityModel.getDays();
 
       $scope.setStartTime = function(){
-        console.log("hej");
+        
         $scope.mytime1 = new Date();
       }
       
@@ -132,5 +137,8 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
       $scope.moveActivity = function (oldday, oldposition, newday, newposition) {
           ActivityModel.moveActivity(oldday, oldposition, newday, newposition)
 }
+      $scope.showTime = function () {
+          //ActivityModel.
 
+      }
   }]);

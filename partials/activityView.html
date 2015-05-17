@@ -52,8 +52,8 @@
                     <div class="text">
 
                     <div style="width:60px; height:80px;float:left; background-color:#d14891" ></div> 
-<!-- Need some styling! -->       
-                <div ng-controller="ctrl">
+<!-- Need some styling start! -->       
+                <div ng-controller="setStartTimeController">
                 <form name="myForm">
                 <p>Start time: </p>
                <input id="input-text" name="input" type="time" placeholder="HH:mm" 
@@ -62,7 +62,7 @@
                         Not a valid time!<BR></span>
                 </form>
                 </div>
-<!-- Need some styling! -->  
+<!-- Need some styling end! -->  
                 <div style="width:140px; height:80px;float:left; " >
                 <p>End time: {{ day.getEnd() }}</p>
                 <p>Total length: {{ day.getTotalLength() }} min </p>
@@ -79,7 +79,8 @@
                     <div data-ng-repeat="activity in dayActivities($index) track by $index">
                         <div class="activityContent ng-pristine ng-valid ng-binding ui-draggable" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" jqyoui-draggable="{placeholder:true, animate: true, index: {{$index}}, onStart: 'storeOld(null, $index)'}" id="{{activity.getTypeId()}}" style="cursor: grab; cursor: -webkit-grab; cursor: -moz-grab; z-index: 99; display: block;" >
                             <!--<span ng-click="removeActivity($index, activity)" class="fontawesome-remove" style="cursor: default"> </span>-->
-                            {{ activity.getLength() }}  min |  {{ activity.getName() }}
+                           
+                            {{ activity.getDay("0") }}  min |  {{ activity.getName() }}
                         </div>
                     </div>
 

@@ -18,7 +18,7 @@ var activityApp = angular.module("activityApp", ["ngRoute","angularModalService"
 }]);
 
 
-activityApp.controller('ctrl', ["$scope", "ActivityModel",
+activityApp.controller('setStartTimeController', ["$scope", "ActivityModel",
   function ($scope,ActivityModel) {
                 
                 $scope.showValues = function (day) {                    
