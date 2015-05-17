@@ -386,6 +386,7 @@ activityApp.factory('ActivityModel', function () {
     this.loadFirebase = function (ref) {
         var mycallback = function (snap) {
             // This should never be final, this will never make the final release. Never!
+            if(snap != undefined){
             if (snap.dayp != undefined) {
                 for (var i = 0; i < snap.dayp.length; i++) {
                     ref.addParkedActivity(new Activity(snap.dayp[i].name, snap.dayp[i].length, snap.dayp[i].typeid, snap.dayp[i].description), i + 1)
@@ -425,6 +426,7 @@ activityApp.factory('ActivityModel', function () {
                         ref.addDay();
                     ref.addActivity(new Activity(snap.day5[i].name, snap.day5[i].length, snap.day5[i].typeid, snap.day5[i].description), 4, i)
                 }
+            }
             }
             // Here we want to update the UI
         }
