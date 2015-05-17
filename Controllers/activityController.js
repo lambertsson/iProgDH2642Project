@@ -14,6 +14,7 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
         $scope.oldieday = oldieday;
       }
 
+      //need to pass event and ui due to DragNDrop library reasons.
       $scope.storeNewDay = function (event, ui, newieday, index) {
         console.log("event: ", event);
         console.log("ui: ", ui);
@@ -21,8 +22,11 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
         console.log('index: ', index);
 
         //$scope.newieday = newieday;
+
+
+        //replace 0 below with the new day. 
         console.log("Bara et index?",newieday);
-        $scope.moveActivity($scope.oldieday, $scope.oldpos, index, 0);
+        $scope.moveActivity($scope.oldieday, $scope.oldpos, 0, index);
       }
 
 

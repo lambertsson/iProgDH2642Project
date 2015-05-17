@@ -75,8 +75,7 @@
                 <div data-drop="true" jqyoui-droppable="{multiple:true}">
 
                     <!-- copy bug occurs because of '...' , onDrop: 'storeNewDay(day, $index)' in the droppable below, so the issue is in the moveActivity function-->
-                  <div id="activitiesOfTheDay" class="features thumbnail ng-pristine ng-valid ui-droppable" data-drop="true" jqyoui-droppable="{index: {{$index}}, multiple: true}" style="z-index: 99; display: block; margin-bottom:0px" aria-disabled="false" ng-model="dayActivities">
-
+                  <div id="activitiesOfTheDay" class="features thumbnail ng-pristine ng-valid ui-droppable" data-drop="true" jqyoui-droppable="{index: {{$index}}, multiple: true, onDrop: 'storeNewDay(day, $index)'}" style="z-index: 99; display: block; margin-bottom:0px" aria-disabled="false" ng-model="dayActivities">
 
 
                     <div data-ng-repeat="activity in dayActivities($index) track by $index">
