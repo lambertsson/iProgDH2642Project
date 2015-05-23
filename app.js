@@ -21,7 +21,8 @@ var activityApp = angular.module("activityApp", ["ngRoute","angularModalService"
 activityApp.controller('setStartTimeController', ["$scope", "ActivityModel",
   function ($scope,ActivityModel) {
                 
-                $scope.showValues = function (day) {                    
+                $scope.showValues = function (day) { 
+                              
                     day.setStart($scope.startTime.getHours(),$scope.startTime.getMinutes());                   
                                     
                 }

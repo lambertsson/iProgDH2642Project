@@ -3,30 +3,31 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
       //$scope.complexResult = null;
 
       var forecasts = ["", ""];
-
+      var theDayActivities;
       $scope.lista = [];
+      
 
       $scope.newpos;
       $scope.newieday;
+      
 
+      
       $scope.storeOld = function (event, ui, oldieday, oldpos) {
+        console.log("Activity index: " + oldpos);
         $scope.oldpos = oldpos;
         $scope.oldieday = oldieday;
       }
 
       //need to pass event and ui due to DragNDrop library reasons.
-      $scope.storeNewDay = function (event, ui, newieday, index) {
+      $scope.storeNewDay = function (event, ui, dayIndex, activityPos) {
+        /*
         console.log("event: ", event);
         console.log("ui: ", ui);
         console.log('newieday: ', newieday);
         console.log('index: ', index);
+        */
 
-        //$scope.newieday = newieday;
-
-
-        //replace 0 below with the new day. 
-        console.log("New day",newieday);
-        $scope.moveActivity($scope.oldieday, $scope.oldpos, index, 0);
+        $scope.moveActivity($scope.oldieday, $scope.oldpos, dayIndex, activityPos);
       }
 
 
@@ -57,8 +58,8 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
 
       $scope.showAddActivity = function () {
           ModalService.showModal({
-              templateUrl: "partials/complex.html",
-              controller: "ComplexController",
+              templateUrl: "partials/addActivity.html",
+              controller: "addActivityController",
               inputs: {
                   title: "Enter your activity information"
               }
@@ -72,27 +73,46 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
       };
 
       $scope.parkedActivities = ActivityModel.getParkedActivities();
-      $scope.dayActivities = function (dayIndex) {
-          var days = ActivityModel.getDays();
-          return days[dayIndex].getActivities();
-      };
-      $scope.getDay = function(dayIndex) {
-          var days = ActivityModel.getDays();
-          alert(days[dayIndex]);
-          return days[dayIndex];
-      }
-
-      $scope.dayActivitiesLength = function (dayIndex) {
-          var activities = $scope.dayActivities(dayIndex);
-          return activities.length;
-      }
 
       $scope.days = ActivityModel.getDays();
+
+      
+
+      $scope.moveUp = function (activity,activityIndex) {  
+          ActivityModel.moveActivity(0,activityIndex,0,activityIndex-1);    
+          //return activity.getDescription();
+      };
+      $scope.moveDown = function (activity,activityIndex) {  
+        
+          ActivityModel.moveActivity(0,activityIndex,0,activityIndex+1);  
+          //return activity.getDescription();
+      };
+      
+
+
+      $scope.getDescription = function (activity) {  
+          alert(activity.getDescription());      
+          //return activity.getDescription();
+      };
+
+      $scope.dayActivities = function (day) {   
+        var days = ActivityModel.getDays();
+        //console.log("WHAT : " + days[day.getIndex()].getActivities());
+        return days[day.getIndex()].getActivities();
+
+      };
+    
+      $scope.dayActivitiesLength = function (day) {
+          var activities = $scope.dayActivities(day);
+          return activities.length;          
+      };
+
+      
 
       $scope.setStartTime = function(){
         
         $scope.mytime1 = new Date();
-      }
+      };
       
 
       $scope.toggleModal = function () {
@@ -100,6 +120,7 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
       };
       
       $scope.addDay = function () {
+
           ActivityModel.addDay();
       };
 
@@ -109,7 +130,7 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
               $('#addDayBtn').css("visibility", "hidden")
           else
               $('#addDayBtn').css("visibility", "visible")
-      }
+      } 
 
       // Make things refresh, because we need to iron out a few bugs...
       $scope.refresh = function (time) {
@@ -120,8 +141,14 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
           }, time)
       }
 
-      $scope.removeDay = function (dayIndex) {
-          ActivityModel.removeDay(dayIndex);
+      $scope.removeDay = function (day) {
+          ActivityModel.removeDay(day);
+      };
+      $scope.removeActivity = function (day,index) {
+
+          ActivityModel.removeActivity(day.getIndex(),index);
+          //console.log("activity index: " + index);
+          //console.log("day: " + day.getIndex());
       };
 
       $scope.removeParkedActivity = function (position) {
@@ -136,9 +163,11 @@ activityApp.controller("activityController", ["$scope", "$routeParams", "$locati
 
       $scope.moveActivity = function (oldday, oldposition, newday, newposition) {
           ActivityModel.moveActivity(oldday, oldposition, newday, newposition)
-}
-      $scope.showTime = function () {
-          //ActivityModel.
+};
+      $scope.showTime = function (activity,day,activityIndex) {
+        //console.log(activity.getName());
+        return ActivityModel.getTimes(activity,day,activityIndex);
+        
+      };
 
-      }
   }]);

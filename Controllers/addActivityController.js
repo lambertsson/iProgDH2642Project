@@ -1,21 +1,15 @@
-activityApp.controller('ComplexController', ['$scope', '$element', 'title', 'close', "ActivityModel",
+activityApp.controller('addActivityController', ['$scope', '$element', 'title', 'close', "ActivityModel",
   function($scope, $element, title, close,ActivityModel) {
-  /*
-  $scope.name = null;
-  $scope.length = null;
-  $scope.type = null;
-  */
+  
   $scope.title = title;
 
   //  This close function doesn't need to use jQuery or bootstrap, because
   //  the button has the 'data-dismiss' attribute.
-  $scope.close = function() {
-
-      // Result = models from the input form
+  $scope.close = function() {      
       var activity = $scope.result;
-
       if (activity) {
         var i = ActivityModel.getParkedActivities().length;
+        //console.log(i);
         ActivityModel.addParkedActivity(new Activity(activity.name, activity.length, activity.type, activity.description), i);
         //console.log(activity);
       } else {

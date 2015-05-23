@@ -8,16 +8,16 @@
       </div>
       <div class="modal-body">
                 <form name="result">
-                <input class="textbox" type="text" ng-model="result.name" id="activityNameBox" placeholder="Name" value=""/>
-                <input class="textbox" type="number" ng-model="result.length" id="activityLengthBox" placeholder="Length" value="" /> min
+                <input class="textbox" type="text" ng-model="result.name" id="activityNameBox" placeholder="Name"/>
+                <input class="textbox" type="number" ng-model="result.length" id="activityLengthBox" placeholder="Length"/> min
                 
-                <select ng-model="result.type" id="activityType" class="textbox" value="Activity Type">
+                <select ng-model="result.type" id="activityType" class="textbox">
                         <option value="Presentation">Presentation</option>
                         <option value="Discussion">Discussion</option>
                         <option value="Groupwork">Group work</option>
                         <option value="Break">Break</option>
                 </select>
-                <textarea  class="textbox" type="text" ng-model="result.description" style="height:120px;"  id="activityDescrBox" placeholder="Description" value="" ></textarea>
+                <textarea  class="textbox" type="text" ng-model="result.description" style="height:120px;"  id="activityDescrBox" placeholder="Description"></textarea>
 
       <div class="modal-footer">
         <button type="button" ng-click="close()" class="btn btn-primary" data-dismiss="modal">OK</button>
