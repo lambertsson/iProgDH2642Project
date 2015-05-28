@@ -132,7 +132,6 @@ function Day(startH, startM, dayId) {
     // returns the string representation Hours:Minutes of 
     // the start time of the day
     this.getStart = function () {
-        //return Math.floor(this._start / 60) + ":" + this._start % 60;        
         var time = Math.floor(this._start / 60) + ":" + this._start % 60;        
       	time = time.split(":");
       	time = moment().hour(time[0]).minute(time[1]).format("HH:mm");      	
@@ -157,11 +156,9 @@ function Day(startH, startM, dayId) {
     // this method will be called when needed from the model
     // don't call it directly
     this._removeActivity = function (position) {
-        var activity = this._activities[position];
-
+        var activity = this._activities[position];       
         this._activities.splice(position, 1);
-        this._updateActivites();
-        //console.log("Remove: " + activity.getName());
+        this._updateActivites();     
         return activity;        
     };
 
@@ -171,13 +168,6 @@ function Day(startH, startM, dayId) {
     this._moveActivity = function (oldposition, newposition) {
         // In case new position is greater than the old position and we are not moving
         // to the last position of the array
-        console.log("new position: " + newposition);
-        /*
-        if (newposition > oldposition && newposition < this._activities.length) {
-            newposition--;
-            }
-            */
-        
         var activity = this._removeActivity(oldposition);
         this._addActivity(activity, newposition);
         this._updateActivites();
@@ -230,48 +220,38 @@ function Day(startH, startM, dayId) {
 activityApp.factory('ActivityModel', function () {
 
 
-    //var Model = function() {
-
     this.firebase = new Firebase('https://agenda-planner.firebaseio.com/');
     this.days = [];
     this.parkedActivities = [];
     this.dayStartTime = 0;
     var latitude = 59.37496119999999;
-    var longitude = 17.9644922;
-    var theTime;
-    
-   
+    var longitude = 17.9644922;    
 
  	this.getTimes = function (activity,day,activityIndex) { 
  		if(activity !== undefined){
- 		var extraTime =[];
- 		//console.log("activityIndex: " + activityIndex);
-		extraTime.push(activity.getLength());
-		var dayActivities = day.getActivities().length;		
-		//console.log("Extra Time: " + this.extraTime);
-        //console.log("theTime: " + theTime);
-        if(activityIndex==0){              	        	
-        	var dayStartTime = day.getStart();        	
-    		var dayHourMinute = dayStartTime.split(":");
-        	theTime = moment().hour(dayHourMinute[0]).minute(dayHourMinute[1]).format("HH:mm");        	   	
+ 	
+        var dayStartTime = day.getStart();
+        var dayHourMinute = dayStartTime.split(":");
+        var startTime = moment().hour(dayHourMinute[0]).minute(dayHourMinute[1]).format("HH:mm");
+            var i = 0;
+            var dayActivityList = day.getActivities();            
+         while(i < activityIndex){
+            var length = dayActivityList[i].getLength()
+            var dayHourMinute = startTime.split(":");
+            startTime = moment().hour(dayHourMinute[0]).minute(dayHourMinute[1]).add(Number(length),'minutes').format("HH:mm");
+            
+            i++; 
+         }         
+         return startTime;
         }
-        else if(activityIndex > 0){       	       	
-        	var dayHourMinute = theTime.split(":");
-        	//console.log("this.theTime: " + this.theTime);
-        	theTime = moment().hour(dayHourMinute[0]).minute(dayHourMinute[1]).add(Number(extraTime[0]),'minutes').format("HH:mm");        	
-        	}
-        	return theTime;
-        	}
-        };
+    };
 
     this.getParkedActivities = function () {
-        //console.log(this.parkedActivities);
         return this.parkedActivities;
 
     };
 
-    this.getDays = function () {
-        //console.log(this.parkedActivities);
+    this.getDays = function () {        
         return this.days;
     };
 
@@ -316,17 +296,10 @@ activityApp.factory('ActivityModel', function () {
             day = new Day(8, 0, this.days.length);
         }
 
-        day.setIndex(this.days.length) // Used by firebase
-        /*
-        console.log("this.days length: " + this.days.length);
-        console.log("day.getIndex(): " + day.getIndex());
-        console.log("days number of activities: " + day.getActivities().length);
-        */
+        day.setIndex(this.days.length) // Used by firebase   
 
         this.days.push(day);
 		
-        //console.log("en dag ", day, this.days);
-        //console.log(this.days);
         return day;
     };
 
@@ -334,8 +307,8 @@ activityApp.factory('ActivityModel', function () {
     this.addActivity = function (activity, dayIndex, position) {    	
 	        if (dayIndex !== null) {
 	        	try{       	
-	        	var pos = this.days[dayIndex].getActivities().length;
-	            this.days[day]._addActivity(activity, pos);
+	        	//var pos = this.days[dayIndex].getActivities().length;
+	            this.days[day]._addActivity(activity, null);
 	        	}
 	        	catch(TypeError){
 	        		console.log("Gives typeError when first load, think it could be because of firebase");
@@ -350,8 +323,7 @@ activityApp.factory('ActivityModel', function () {
 
     this.removeActivity = function (dayIndex,activityIndex){
 
-    	this.days[dayIndex]._removeActivity(activityIndex);
-    	//this.updateParkedActivitiesOnFirebase();
+    	this.days[dayIndex]._removeActivity(activityIndex);    	
     
     }
     this.updateParkedActivitiesOnFirebase = function () {
@@ -380,35 +352,16 @@ activityApp.factory('ActivityModel', function () {
         return activity;
     };
 
-    /*
-    this.removeActivity = function (activity) {
-        console.log(activity)
-        var days = this.getDays();
-        for (var i = 0; i < days.length; i++) {
-            var activities = days[i].getActivities();
-            for (var j = 0; j < activities.length; j++) {
-                // This is so ugly... I'm ashamed of it.
-                if (activities[j].getName() == activity.getName() && activities[j].getTypeId() == activity.getTypeId() && activities[j].getLength() == activity.getLength() && activities[j].getDescription() == activity.getDescription()) {
-                    days[i].removeActivity(j);
-                }
-            }
-        }
-    }
-    */
-
     // moves activity between the days, or day and parked activities.
     // to park activity you need to set the new day to null
     // to move a parked activity to let's say day 0 you set oldday to null
     // and new day to 0
     this.moveActivity = function (oldday, oldposition, newday, newposition) {
 
-
         console.log("oldday:", oldday, ", oldpos:", oldposition, ", newday:", newday, ", newpos:", newposition);
 
-
         if (oldday !== null && oldday == newday) {
-        	//If moved within the same day. 
-        	console.log("yesssss");       	
+        	//If moved within the same day.        	      	
             this.days[oldday]._moveActivity(oldposition, newposition);
         } else if (oldday == null && newday == null) {
         	//If moved within the parkedActivities.        	
@@ -431,8 +384,7 @@ activityApp.factory('ActivityModel', function () {
     };
 
     this.testing = function () {
-        //console.log(5);
-        //this.addActivity(new Activity("Idea 1",30,0,""),0);
+        
         this.firebase.update({
             dayp: [{ name: "Meeting", length: 5, typeid: 1, description: "Very important!" }, { name: "Meeting 2", length: 10, typeid: 2, description: "Not very important..." }]
         })

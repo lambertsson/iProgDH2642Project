@@ -348,5 +348,8 @@ button {
 #input-text {
   color: #D14891;
 }
-
+.rightright { 
+  float:right; 
+  font-size: 25px;
+}
 
