@@ -304,11 +304,11 @@ activityApp.factory('ActivityModel', function () {
     };
 
     // add an activity to model
-    this.addActivity = function (activity, dayIndex, position) {    	
+    this.addActivity = function (activity, dayIndex, position) { 
+    	console.log("DayIndex: " + dayIndex);   	
 	        if (dayIndex !== null) {
-	        	try{       	
-	        	//var pos = this.days[dayIndex].getActivities().length;
-	            this.days[day]._addActivity(activity, null);
+	        	try{       		        	
+	            this.days[dayIndex]._addActivity(activity, null);
 	        	}
 	        	catch(TypeError){
 	        		console.log("Gives typeError when first load, think it could be because of firebase");
